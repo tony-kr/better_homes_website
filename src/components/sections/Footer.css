@@ -1,0 +1,146 @@
+.footer-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: transparent;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5rem 2.5rem;
+}
+
+/* Invitation — sits above the distant lit house */
+.footer-invite {
+  padding-bottom: 4rem;
+}
+
+.footer-eyebrow {
+  margin-bottom: 2rem;
+}
+
+.footer-headline {
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+  font-weight: 800;
+  color: var(--plaster);
+  margin-bottom: 2.5rem;
+  max-width: 22ch;
+}
+
+.footer-email {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.14em;
+  color: var(--red-bright);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-bright);
+  padding-bottom: 6px;
+  transition: color 0.4s var(--ease-out-soft),
+              border-color 0.4s var(--ease-out-soft),
+              text-shadow 0.4s var(--ease-out-soft);
+}
+
+.footer-email:hover {
+  color: #ffffff;
+  border-color: var(--red-bright);
+  text-shadow: 0 0 28px rgba(213, 0, 0, 0.55);
+}
+
+/* Link columns */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 240px));
+  gap: 3rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-column h4 {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--stone-dim);
+  margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--stone);
+}
+
+.footer-column a {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--stone);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: var(--red-bright);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.8rem;
+  /* keeps the copyright clear of the fixed sheet indicator */
+  padding-left: 10rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.6rem;
+  color: var(--stone-dim);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-content {
+    padding: 0 2.5rem 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 0 1.5rem 4.5rem;
+  }
+
+  .footer-invite {
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,292 @@
+/*
+  The Spaces — the one light section.
+  The background inherits the palette of the active photograph (--room-ink /
+  animated .carousel-bg), so type, frame, and image read as one picture.
+*/
+.room-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Animated, image-tinted backdrop */
+.carousel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #c4b1cf;
+}
+
+/* Soft vignette so the tint doesn't feel flat */
+.carousel-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 70% 40%, rgba(255, 255, 255, 0.22) 0%, transparent 55%),
+    radial-gradient(140% 110% at 50% 115%, rgba(0, 0, 0, 0.16) 0%, transparent 55%);
+}
+
+.carousel-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5rem;
+  width: 100%;
+  height: 72vh;
+  gap: 3rem;
+}
+
+/* Left side: Room info — deep shade of the room's own hue */
+.carousel-info-side {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.carousel-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+}
+
+/* .room-carousel prefix outranks the base .annotation color from App.css */
+.room-carousel .carousel-counter {
+  color: var(--room-ink);
+  opacity: 0.85;
+  font-weight: 700;
+  transition: color 0.9s ease;
+}
+
+.room-carousel .carousel-counter .tick {
+  color: var(--red);
+}
+
+.carousel-title {
+  font-size: clamp(2.6rem, 5.8vw, 5.2rem);
+  font-weight: 800;
+  color: var(--room-ink);
+  line-height: 1;
+  transition: color 0.9s ease;
+}
+
+.carousel-title em {
+  font-style: normal;
+  color: inherit;
+  text-shadow: none;
+}
+
+.carousel-description {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--room-ink);
+  opacity: 0.82;
+  max-width: 40ch;
+  transition: color 0.9s ease;
+}
+
+.room-carousel .carousel-meta {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--room-ink);
+  opacity: 0.8;
+  transition: color 0.9s ease;
+}
+
+.carousel-btn {
+  margin-top: 0.6rem;
+}
+
+/* Right side: the photograph as a mounted print */
+.carousel-card-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+
+.carousel-card {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin: 0;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: auto;
+  max-height: 58vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  box-shadow:
+    0 34px 70px color-mix(in srgb, var(--room-ink) 38%, transparent),
+    0 0 0 1px rgba(255, 255, 255, 0.25);
+  user-select: none;
+}
+
+/* Offset hairline frame in the room's ink */
+.carousel-card::before {
+  content: '';
+  position: absolute;
+  inset: -14px 14px 14px -14px;
+  border: 1px solid color-mix(in srgb, var(--room-ink) 45%, transparent);
+  border-radius: 2px;
+  pointer-events: none;
+  transition: border-color 0.9s ease;
+}
+
+.room-carousel .card-caption {
+  position: absolute;
+  left: 0;
+  bottom: -2.2rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--room-ink);
+  opacity: 0.8;
+  transition: color 0.9s ease;
+}
+
+/* Navigation */
+.carousel-nav {
+  position: absolute;
+  bottom: 2.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.carousel-arrow {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--room-ink) 45%, transparent);
+  border-radius: 50%;
+  font-size: 1rem;
+  color: var(--room-ink);
+  cursor: pointer;
+  transition: border-color 0.35s var(--ease-out-soft),
+              color 0.35s var(--ease-out-soft),
+              background 0.35s var(--ease-out-soft);
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  background: var(--room-ink);
+  border-color: var(--room-ink);
+  color: #ffffff;
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--room-ink) 55%, transparent);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.2);
+}
+
+.carousel-dot:hover:not(.active) {
+  border-color: var(--room-ink);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .carousel-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 2.5rem;
+    height: auto;
+  }
+
+  .carousel-info-side {
+    min-height: auto;
+    order: 2;
+  }
+
+  .carousel-card-side {
+    order: 1;
+    height: auto;
+  }
+
+  .carousel-card {
+    max-width: 440px;
+  }
+
+  .carousel-card img {
+    max-height: 38vh;
+  }
+
+  .carousel-title {
+    font-size: clamp(2.2rem, 7vw, 3.4rem);
+  }
+
+  .card-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-layout {
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .carousel-card {
+    max-width: 320px;
+  }
+
+  .carousel-card::before {
+    inset: -9px 9px 9px -9px;
+  }
+
+  .carousel-description {
+    font-size: 0.95rem;
+  }
+
+  .carousel-nav {
+    bottom: 1.4rem;
+    gap: 1.25rem;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

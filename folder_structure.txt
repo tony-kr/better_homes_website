@@ -1,0 +1,38 @@
+architecture-portfolio/
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+├── install.sh
+├── README.md
+├── DESIGN_CONCEPTS.md
+├── IMPLEMENTATION_GUIDE.md
+├── PROJECT_OVERVIEW.md
+├── STYLE_UPDATE_NOTES.md
+├── public/
+│   ├── full_house.svg
+│   ├── line_sketch.svg
+│   ├── living_room.jpg
+│   ├── living_room_broll.jpeg
+│   ├── bedroon_brol.jpg
+│   ├── kitchen_broll.jpg
+│   ├── dining_broll.jpg
+│   └── patio_broll.jpg
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── App.css
+    └── components/
+        ├── HouseCanvas.jsx
+        ├── HouseCanvas.css
+        └── sections/
+            ├── LandingSection.jsx
+            ├── LandingSection.css
+            ├── HeroSection.jsx
+            ├── HeroSection.css
+            ├── RoomCarousel.jsx
+            ├── RoomCarousel.css
+            ├── RoomSection.jsx
+            ├── RoomSection.css
+            ├── Footer.jsx
+            └── Footer.css

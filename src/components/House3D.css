@@ -1,0 +1,69 @@
+.house3d-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.house3d-container canvas {
+  position: relative;
+  z-index: 2;
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dusk sky — CSS gradient is the backdrop, WebGL renders on top */
+.house3d-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    #0a0f16 0%,
+    #0e1622 42%,
+    #162335 68%,
+    #23344a 88%,
+    #2e4157 100%
+  );
+}
+
+/* Last warmth at the horizon line */
+.house3d-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18%;
+  height: 34%;
+  z-index: 1;
+  background: radial-gradient(
+    55% 100% at 50% 100%,
+    rgba(232, 168, 87, 0.13) 0%,
+    rgba(232, 168, 87, 0.05) 45%,
+    transparent 75%
+  );
+  filter: blur(6px);
+}
+
+/* The Spaces section is fully tinted by the photography — hide the scene */
+.house3d-container[data-section='rooms'] canvas {
+  opacity: 0;
+}
+
+.house3d-container[data-section='hero'] canvas {
+  opacity: 0.62;
+}
+
+/* Type must win on small screens */
+@media (max-width: 768px) {
+  .house3d-container canvas {
+    opacity: 0.55;
+  }
+
+  .house3d-container[data-section='hero'] canvas {
+    opacity: 0.4;
+  }
+
+  .house3d-container[data-section='rooms'] canvas {
+    opacity: 0;
+  }
+}
