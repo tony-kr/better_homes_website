@@ -6,11 +6,11 @@
 .room-carousel {
   position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 4.5rem 0 6.5rem; /* room for the nav below the layout */
 }
 
 /* Animated, image-tinted backdrop */
@@ -262,7 +262,132 @@
   }
 }
 
+/* Concept boards overlay */
+.concepts-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(11, 17, 24, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.concepts-scroll {
+  height: 100%;
+  overflow-y: auto;
+  padding: 4rem 5rem 5rem;
+  overscroll-behavior: contain;
+}
+
+.concepts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto 2.4rem;
+}
+
+.concepts-eyebrow {
+  margin-bottom: 0.9rem;
+}
+
+.concepts-title {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  margin-bottom: 0.8rem;
+}
+
+.concepts-note {
+  font-size: 0.62rem;
+}
+
+.concepts-note a {
+  color: var(--red-bright);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red-deep);
+}
+
+.concepts-close {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--plaster);
+  background: transparent;
+  border: 1px solid var(--line-bright);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s var(--ease-out-soft),
+              border-color 0.3s var(--ease-out-soft),
+              background 0.3s var(--ease-out-soft),
+              transform 0.3s var(--ease-out-soft);
+}
+
+.concepts-close:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.concepts-card {
+  margin: 0;
+  background: var(--ink-700);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.concepts-card img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out-soft);
+}
+
+.concepts-card:hover img {
+  transform: scale(1.04);
+}
+
+.concepts-overlay .concepts-caption {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.58rem;
+  border-top: 1px solid var(--line);
+  color: var(--stone);
+}
+
 @media (max-width: 768px) {
+  .concepts-scroll {
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .concepts-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .concepts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .concepts-card img {
+    height: 140px;
+  }
+
   .carousel-layout {
     padding: 0 1.5rem;
     gap: 1.5rem;

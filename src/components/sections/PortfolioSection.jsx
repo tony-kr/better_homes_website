@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { featuredPhoto } from '../../data/projectPhotos';
 import './PortfolioSection.css';
 
-// Featured projects from betterhomesindia.in — real names, areas, neighbourhoods
+// Featured projects — real names, areas, neighbourhoods, shot on site
 const projects = [
   {
     id: 'modern-minimalist-kitchen',
@@ -10,7 +11,7 @@ const projects = [
     category: 'Kitchen',
     area: '180 sq ft',
     location: 'Whitefield',
-    image: '/kitchen/kitchen-02.jpg'
+    image: featuredPhoto(34)
   },
   {
     id: 'luxe-living-room',
@@ -18,7 +19,7 @@ const projects = [
     category: 'Living room',
     area: '320 sq ft',
     location: 'Indiranagar',
-    image: '/living_room/living-02.jpg'
+    image: featuredPhoto(46)
   },
   {
     id: 'contemporary-3bhk',
@@ -26,7 +27,7 @@ const projects = [
     category: 'Full home',
     area: '1,400 sq ft',
     location: 'Koramangala',
-    image: '/dining_space/dining-02.jpg'
+    image: featuredPhoto(44)
   },
   {
     id: 'serene-master-suite',
@@ -34,7 +35,7 @@ const projects = [
     category: 'Bedroom',
     area: '220 sq ft',
     location: 'HSR Layout',
-    image: '/bedroom/bedroom-01.jpg'
+    image: featuredPhoto(43)
   },
   {
     id: 'scandinavian-kitchen',
@@ -42,7 +43,7 @@ const projects = [
     category: 'Kitchen',
     area: '150 sq ft',
     location: 'Sarjapur Road',
-    image: '/kitchen/kitchen-04.jpg'
+    image: featuredPhoto(18)
   }
 ];
 
@@ -109,7 +110,8 @@ const PortfolioSection = () => {
             animate={hasEntered ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            05 of 12 completed projects, across Bangalore
+            05 featured works, across Bangalore <span className="tick">/</span>{' '}
+            <a href="#/gallery" className="portfolio-gallery-link">see the full gallery →</a>
           </motion.p>
         </div>
 

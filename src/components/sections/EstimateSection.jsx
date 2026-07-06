@@ -27,20 +27,30 @@ const EstimateSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Static site: compose the enquiry as an email to the studio
+  // The enquiry goes straight to the studio's WhatsApp, fully drafted
+  const WHATSAPP_NUMBER = '918287633479';
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const subject = `Free estimate request — ${data.get('projectType')}`;
-    const body = [
-      `Name: ${data.get('name')}`,
-      `Mobile: ${data.get('mobile')}`,
-      `Email: ${data.get('email')}`,
-      `Project type: ${data.get('projectType')}`,
+    const message = data.get('message')?.trim();
+    const lines = [
+      'Hello Better Homes!',
+      'I would like a *free estimate* for my home. Here are my details:',
       '',
-      data.get('message')
-    ].join('\n');
-    window.location.href = `mailto:hello@betterhomes.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      `*Name:* ${data.get('name')}`,
+      `*Mobile:* ${data.get('mobile')}`,
+      `*Email:* ${data.get('email')}`,
+      `*Project type:* ${data.get('projectType')}`,
+      ...(message ? ['', `*About the space:* ${message}`] : []),
+      '',
+      'Please get back to me with the scope and estimate. Thank you!'
+    ];
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`,
+      '_blank',
+      'noopener'
+    );
     setSent(true);
   };
 
@@ -69,6 +79,10 @@ const EstimateSection = () => {
             <li>
               <span className="annotation">Call</span>
               <a href="tel:+919876543210">+91 98765 43210</a>
+            </li>
+            <li>
+              <span className="annotation">WhatsApp</span>
+              <a href="https://wa.me/918287633479" target="_blank" rel="noreferrer">+91 82876 33479</a>
             </li>
             <li>
               <span className="annotation">Write</span>
@@ -129,7 +143,7 @@ const EstimateSection = () => {
             </button>
             {sent && (
               <span className="annotation estimate-sent">
-                Opening your mail app — we reply within a day
+                Opening WhatsApp — we reply within a day
               </span>
             )}
           </div>

@@ -1,0 +1,166 @@
+/*
+  Gallery page — a long, freely scrolling sheet of the client's real work.
+*/
+.gallery-page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 7.5rem 5rem 4rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.gallery-back {
+  margin-bottom: 2.4rem;
+}
+
+.gallery-back .arrow {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-out-soft);
+}
+
+.gallery-back:hover .arrow {
+  transform: translateX(-5px);
+}
+
+.gallery-page-eyebrow {
+  margin-bottom: 1.2rem;
+}
+
+.gallery-page-title {
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  margin-bottom: 1.1rem;
+}
+
+.gallery-page-lede {
+  max-width: 46ch;
+  font-size: 0.98rem;
+}
+
+/* Filters */
+.gallery-page-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 2.6rem 0 2.2rem;
+}
+
+.gallery-page-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  color: var(--stone);
+  transition: color 0.3s var(--ease-out-soft),
+              border-color 0.3s var(--ease-out-soft),
+              background 0.3s var(--ease-out-soft);
+}
+
+.gallery-page-filter .filter-count {
+  font-size: 0.58rem;
+  color: var(--stone-dim);
+  letter-spacing: 0.08em;
+}
+
+.gallery-page-filter:hover {
+  color: var(--plaster);
+  border-color: var(--line-bright);
+}
+
+.gallery-page-filter.active {
+  color: #ffffff;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.gallery-page-filter.active .filter-count {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Masonry-ish grid — CSS columns keep each photo's own aspect */
+.gallery-page-grid {
+  columns: 3 320px;
+  column-gap: 1.4rem;
+}
+
+.gallery-page-card {
+  break-inside: avoid;
+  margin: 0 0 1.4rem;
+  background: var(--ink-700);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.gallery-page-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.7s var(--ease-out-soft), filter 0.7s var(--ease-out-soft);
+  filter: saturate(0.96);
+}
+
+.gallery-page-card:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.gallery-page-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.58rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Closing CTA */
+.gallery-page-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 4rem 0 3rem;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .gallery-page {
+    padding: 6.5rem 2.5rem 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-page {
+    padding: 5.5rem 1.25rem 5rem;
+  }
+
+  .gallery-page-filters {
+    margin: 1.8rem 0 1.4rem;
+    gap: 0.45rem;
+  }
+
+  .gallery-page-filter {
+    padding: 0.45rem 0.85rem;
+  }
+
+  .gallery-page-grid {
+    columns: 2 160px;
+    column-gap: 0.8rem;
+  }
+
+  .gallery-page-card {
+    margin-bottom: 0.8rem;
+  }
+
+  .gallery-page-caption {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.52rem;
+  }
+}

@@ -10,7 +10,8 @@ const Footer = () => {
             08 <span className="tick">/</span> 08 — Start a project
           </p>
           <h2 className="footer-headline">
-            Every home here started<br />as a sketch. <em>Let's draw yours.</em>
+            Every home here started as a sketch.<br />
+            <em>Let's draw yours.</em>
           </h2>
           <a href="mailto:hello@betterhomes.in" className="footer-email">
             hello@betterhomes.in
@@ -34,7 +35,8 @@ const Footer = () => {
             <ul>
               <li><a href="#hero">About</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#stories">Client stories</a></li>
+              <li><a href="#/gallery">Gallery</a></li>
               <li><a href="#rooms">The spaces</a></li>
               <li><a href="#estimate">Free estimate</a></li>
             </ul>

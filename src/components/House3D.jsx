@@ -18,6 +18,7 @@ const VIEWS = {
   services:  { pos: [-4.5, 7.5, 12.5], target: [0, 0.4, 0], drawing: 0.8, glow: 0.4 },
   rooms:     { pos: [9.5, 4.6, 11.5], target: [0, 0.9, 0], drawing: 0.15, glow: 0.5 },
   portfolio: { pos: [11.5, 2.2, 6.5], target: [-1.5, 1.1, 0], drawing: 0.3, glow: 0.7 },
+  stories:   { pos: [-9.8, 3.4, 10.5], target: [0.4, 1.0, 0], drawing: 0.35, glow: 0.85 },
   gallery:   { pos: [10.0, 3.5, 13.0], target: [0, 0.9, 0], drawing: 0.2, glow: 0.45 },
   estimate:  { pos: [-6.0, 2.0, 12.5], target: [0.8, 1.0, 0], drawing: 0.45, glow: 1.1 },
   footer:    { pos: [0.5, 1.5, 16.0], target: [0, 0.9, 0], drawing: 0.1, glow: 1.5 },

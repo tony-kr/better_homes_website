@@ -99,6 +99,16 @@
   color: var(--stone-dim);
 }
 
+.portfolio-gallery-link {
+  color: var(--red-bright);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out-soft);
+}
+
+.portfolio-gallery-link:hover {
+  color: #ffffff;
+}
+
 /* Right: the photograph */
 .portfolio-image-side {
   position: relative;

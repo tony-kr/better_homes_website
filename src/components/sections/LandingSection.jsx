@@ -65,10 +65,10 @@ const LandingSection = ({ onNavigate }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 2.9 }}
         >
-          <button className="btn-primary" onClick={() => onNavigate?.('rooms')}>
-            See the spaces
+          <a className="btn-primary" href="#/gallery">
+            See our work
             <span className="arrow">→</span>
-          </button>
+          </a>
           <button className="btn-ghost" onClick={() => onNavigate?.('footer')}>
             Start a project
           </button>

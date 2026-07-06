@@ -1,0 +1,129 @@
+/*
+  Client stories — one voice at a time, centre stage.
+*/
+.stories-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.stories-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.6rem;
+  text-align: center;
+}
+
+.stories-eyebrow {
+  margin-bottom: 1.2rem;
+}
+
+.stories-title {
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+}
+
+/* Quote stage */
+.stories-stage {
+  position: relative;
+  margin: 0;
+  padding: 2.6rem 2rem 2.2rem;
+  border: 1px solid var(--line);
+  background: rgba(16, 24, 35, 0.72);
+}
+
+.stories-mark {
+  position: absolute;
+  top: -2.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 4.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--red-bright);
+  text-shadow: 0 0 34px rgba(213, 0, 0, 0.4);
+}
+
+.stories-quote {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--plaster);
+  max-width: 56ch;
+  margin: 0 auto 1.6rem;
+}
+
+.stories-byline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stories-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+}
+
+.stories-project {
+  font-size: 0.6rem;
+  color: var(--stone-dim);
+}
+
+/* Dots */
+.stories-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.stories-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--stone-dim);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out-soft),
+              border-color 0.3s var(--ease-out-soft),
+              transform 0.3s var(--ease-out-soft);
+}
+
+.stories-dot:hover {
+  border-color: var(--plaster);
+}
+
+.stories-dot.active {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+  .stories-content {
+    padding: 0 1.25rem;
+    gap: 2rem;
+  }
+
+  .stories-stage {
+    padding: 2rem 1.2rem 1.8rem;
+  }
+
+  .stories-mark {
+    font-size: 3.4rem;
+    top: -1.5rem;
+  }
+}

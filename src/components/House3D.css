@@ -49,12 +49,18 @@
   opacity: 0;
 }
 
+/* Footer: the house recedes so the invitation reads over its glow */
+.house3d-container[data-section='footer'] canvas {
+  opacity: 0.72;
+}
+
 .house3d-container[data-section='hero'] canvas {
   opacity: 0.62;
 }
 
 /* Content-dense sheets: the house recedes so type and photos stay legible */
 .house3d-container[data-section='services'] canvas,
+.house3d-container[data-section='stories'] canvas,
 .house3d-container[data-section='estimate'] canvas {
   opacity: 0.38;
 }
@@ -79,6 +85,7 @@
   }
 
   .house3d-container[data-section='services'] canvas,
+  .house3d-container[data-section='stories'] canvas,
   .house3d-container[data-section='estimate'] canvas {
     opacity: 0.25;
   }
