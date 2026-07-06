@@ -50,7 +50,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="annotation hero-eyebrow">
-            02 <span className="tick">/</span> 04 — The studio
+            02 <span className="tick">/</span> 08 — The studio
           </p>
 
           <h2 className="hero-title">

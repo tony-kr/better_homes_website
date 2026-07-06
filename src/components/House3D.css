@@ -53,6 +53,17 @@
   opacity: 0.62;
 }
 
+/* Content-dense sheets: the house recedes so type and photos stay legible */
+.house3d-container[data-section='services'] canvas,
+.house3d-container[data-section='estimate'] canvas {
+  opacity: 0.38;
+}
+
+.house3d-container[data-section='portfolio'] canvas,
+.house3d-container[data-section='gallery'] canvas {
+  opacity: 0.22;
+}
+
 /* Type must win on small screens */
 @media (max-width: 768px) {
   .house3d-container canvas {
@@ -65,5 +76,15 @@
 
   .house3d-container[data-section='rooms'] canvas {
     opacity: 0;
+  }
+
+  .house3d-container[data-section='services'] canvas,
+  .house3d-container[data-section='estimate'] canvas {
+    opacity: 0.25;
+  }
+
+  .house3d-container[data-section='portfolio'] canvas,
+  .house3d-container[data-section='gallery'] canvas {
+    opacity: 0.15;
   }
 }

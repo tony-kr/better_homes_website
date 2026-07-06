@@ -2,19 +2,27 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import House3D from './components/House3D';
 import LandingSection from './components/sections/LandingSection';
 import HeroSection from './components/sections/HeroSection';
+import ServicesSection from './components/sections/ServicesSection';
 import RoomCarousel from './components/sections/RoomCarousel';
+import PortfolioSection from './components/sections/PortfolioSection';
+import GallerySection from './components/sections/GallerySection';
+import EstimateSection from './components/sections/EstimateSection';
 import Footer from './components/sections/Footer';
 import StaggeredMenu from './components/sections/StaggeredMenu';
 import './App.css';
 
 // Definitions required for the menu and scroll logic
-const SECTION_IDS = ['landing', 'hero', 'rooms', 'footer'];
+const SECTION_IDS = ['landing', 'hero', 'services', 'rooms', 'portfolio', 'gallery', 'estimate', 'footer'];
 const SCROLL_COOLDOWN = 1000;
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to landing', link: '#landing' },
-  { label: 'Studio', ariaLabel: 'Learn about us', link: '#hero' },
-  { label: 'Spaces', ariaLabel: 'View rooms', link: '#rooms' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '#hero' },
+  { label: 'Services', ariaLabel: 'What we design', link: '#services' },
+  { label: 'Experience', ariaLabel: 'Explore the spaces', link: '#rooms' },
+  { label: 'Portfolio', ariaLabel: 'Featured projects', link: '#portfolio' },
+  { label: 'Gallery', ariaLabel: 'Real homes gallery', link: '#gallery' },
+  { label: 'Free Estimate', ariaLabel: 'Get a free estimate', link: '#estimate' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '#footer' }
 ];
 
@@ -26,6 +34,7 @@ const socialItems = [
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [galleryFilter, setGalleryFilter] = useState('all');
   const currentPageRef = useRef(0);
   const isScrolling = useRef(false);
   const sectionRefs = useRef({});
@@ -164,8 +173,29 @@ function App() {
         <HeroSection />
       </div>
 
+      <div className="page-section" ref={el => sectionRefs.current['services'] = el} id="services">
+        <ServicesSection onNavigate={goToSection} />
+      </div>
+
       <div className="page-section" ref={el => sectionRefs.current['rooms'] = el} id="rooms">
-        <RoomCarousel />
+        <RoomCarousel
+          onSeeProjects={(roomId) => {
+            setGalleryFilter(roomId);
+            goToSection('gallery');
+          }}
+        />
+      </div>
+
+      <div className="page-section" ref={el => sectionRefs.current['portfolio'] = el} id="portfolio">
+        <PortfolioSection />
+      </div>
+
+      <div className="page-section" ref={el => sectionRefs.current['gallery'] = el} id="gallery">
+        <GallerySection filter={galleryFilter} onFilterChange={setGalleryFilter} />
+      </div>
+
+      <div className="page-section" ref={el => sectionRefs.current['estimate'] = el} id="estimate">
+        <EstimateSection />
       </div>
 
       <div className="page-section" ref={el => sectionRefs.current['footer'] = el} id="footer">

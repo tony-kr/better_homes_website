@@ -85,7 +85,7 @@ const infoVariants = {
   })
 };
 
-const RoomCarousel = () => {
+const RoomCarousel = ({ onSeeProjects }) => {
   const [[activeIndex, direction], setState] = useState([0, 0]);
 
   const paginate = (newDirection) => {
@@ -126,17 +126,20 @@ const RoomCarousel = () => {
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="annotation carousel-counter">
-                03 <span className="tick">/</span> 04 — The spaces
+                04 <span className="tick">/</span> 08 — The spaces
               </span>
               <h2 className="carousel-title"><em>{room.title}</em></h2>
               <p className="carousel-description">{room.description}</p>
               <div className="carousel-meta annotation">
                 <span>{String(room.projects).padStart(2, '0')} projects delivered</span>
               </div>
-              <a href={`/gallery/${room.id}`} className="btn-primary carousel-btn">
+              <button
+                className="btn-primary carousel-btn"
+                onClick={() => onSeeProjects?.(room.id)}
+              >
                 See {room.title.toLowerCase()} projects
                 <span className="arrow">→</span>
-              </a>
+              </button>
             </motion.div>
           </AnimatePresence>
         </div>

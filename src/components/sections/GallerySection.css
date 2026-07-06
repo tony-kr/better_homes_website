@@ -1,0 +1,158 @@
+/*
+  Gallery — a draggable wall of the client's real project photography.
+  Dark room, prints under gallery lighting.
+*/
+.gallery-section {
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.gallery-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.gallery-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gallery-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gallery-title {
+  font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+}
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.gallery-filter {
+  background: none;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  font-size: 0.62rem;
+  cursor: pointer;
+  transition: color 0.35s var(--ease-out-soft),
+              border-color 0.35s var(--ease-out-soft),
+              background 0.35s var(--ease-out-soft);
+}
+
+.gallery-filter:hover {
+  color: var(--plaster);
+  border-color: var(--stone);
+}
+
+.gallery-filter.active {
+  color: #ffffff;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* The strip bleeds off both edges of the viewport */
+.gallery-viewport {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.gallery-viewport:active {
+  cursor: grabbing;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0 5rem;
+  width: max-content;
+}
+
+.gallery-card {
+  position: relative;
+  flex-shrink: 0;
+  height: 46vh;
+  margin: 0;
+}
+
+.gallery-card img {
+  height: 100%;
+  width: auto;
+  max-width: 60vw;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line-bright);
+  box-shadow: 0 24px 60px rgba(4, 8, 14, 0.5);
+  pointer-events: none;
+}
+
+.gallery-section .gallery-caption {
+  position: absolute;
+  left: 0;
+  bottom: -1.7rem;
+  font-size: 0.58rem;
+  color: var(--stone-dim);
+  white-space: nowrap;
+}
+
+.gallery-section .gallery-hint {
+  padding: 0 5rem;
+  max-width: 1440px;
+  margin: 0.6rem auto 0;
+  width: 100%;
+  font-size: 0.62rem;
+  color: var(--stone-dim);
+}
+
+@media (max-width: 1024px) {
+  .gallery-header,
+  .gallery-track,
+  .gallery-section .gallery-hint {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .gallery-filters {
+    justify-content: flex-start;
+  }
+  .gallery-track {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .gallery-card {
+    height: 38vh;
+  }
+  .gallery-card img {
+    max-width: 78vw;
+  }
+  .gallery-section .gallery-hint {
+    padding-left: 1.25rem;
+  }
+}

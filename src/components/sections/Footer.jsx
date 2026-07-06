@@ -7,7 +7,7 @@ const Footer = () => {
 
         <div className="footer-invite">
           <p className="annotation footer-eyebrow">
-            04 <span className="tick">/</span> 04 — Start a project
+            08 <span className="tick">/</span> 08 — Start a project
           </p>
           <h2 className="footer-headline">
             Every home here started<br />as a sketch. <em>Let's draw yours.</em>
@@ -19,11 +19,35 @@ const Footer = () => {
 
         <div className="footer-grid">
           <div className="footer-column">
+            <h4 className="annotation">Services</h4>
+            <ul>
+              <li><a href="#services">Modular Kitchen</a></li>
+              <li><a href="#services">Living Room</a></li>
+              <li><a href="#services">Bedroom</a></li>
+              <li><a href="#services">Full Home</a></li>
+              <li><a href="#services">Commercial Interiors</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
             <h4 className="annotation">Studio</h4>
             <ul>
-              <li><a href="#landing">Better Homes</a></li>
-              <li><a href="#hero">The studio</a></li>
+              <li><a href="#hero">About</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#gallery">Gallery</a></li>
               <li><a href="#rooms">The spaces</a></li>
+              <li><a href="#estimate">Free estimate</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4 className="annotation">Locations</h4>
+            <ul>
+              <li>Whitefield</li>
+              <li>Koramangala</li>
+              <li>Indiranagar</li>
+              <li>HSR Layout</li>
+              <li>Electronic City</li>
             </ul>
           </div>
 

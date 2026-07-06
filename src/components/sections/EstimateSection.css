@@ -1,0 +1,173 @@
+/*
+  Free estimate — the enquiry sheet. Split layout: the invitation on the
+  left, the form on a raised drawing-sheet panel to the right.
+*/
+.estimate-section {
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.estimate-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5rem;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.estimate-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.estimate-title {
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+}
+
+.estimate-lede {
+  max-width: 42ch;
+  font-size: 0.95rem;
+}
+
+.estimate-details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.6rem;
+}
+
+.estimate-details li {
+  display: grid;
+  grid-template-columns: 3.6rem 1fr;
+  gap: 1.2rem;
+  align-items: baseline;
+  font-size: 0.9rem;
+  color: var(--stone);
+}
+
+.estimate-details .annotation {
+  font-size: 0.6rem;
+  color: var(--stone-dim);
+}
+
+.estimate-details a {
+  color: var(--plaster);
+  text-decoration: none;
+  transition: color 0.35s var(--ease-out-soft);
+}
+
+.estimate-details a:hover {
+  color: var(--red-bright);
+}
+
+/* The form panel */
+.estimate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  background: rgba(16, 24, 35, 0.88);
+  border: 1px solid var(--line);
+  padding: 2.2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-field .annotation {
+  font-size: 0.6rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--plaster);
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  padding: 0.75rem 0.9rem;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.35s var(--ease-out-soft);
+  width: 100%;
+  resize: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--stone-dim);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--red);
+}
+
+.form-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2393a0ae' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  cursor: pointer;
+}
+
+.estimate-submit {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.estimate-section .estimate-sent {
+  font-size: 0.6rem;
+  color: var(--lamp-bright);
+}
+
+@media (max-width: 1024px) {
+  .estimate-content {
+    padding: 0 2.5rem;
+    gap: 2.5rem;
+  }
+  .estimate-form {
+    padding: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .estimate-content {
+    grid-template-columns: 1fr;
+    padding: 0 1.25rem;
+    gap: 1.4rem;
+  }
+  .estimate-lede,
+  .estimate-details {
+    display: none; /* phone: the form is the section; details live in the footer */
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .estimate-form {
+    padding: 1.2rem;
+    gap: 0.8rem;
+  }
+}

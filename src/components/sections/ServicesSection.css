@@ -1,0 +1,137 @@
+/*
+  Services — eight disciplines on drawing-sheet cards.
+  Dark section; the 3D house holds a distant elevation behind it.
+*/
+.services-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.services-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.services-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.services-title {
+  font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+  max-width: 22ch;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.5rem 1.4rem 1.7rem;
+  background: rgba(16, 24, 35, 0.86);
+  transition: background 0.45s var(--ease-out-soft);
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out-soft);
+}
+
+.service-card:hover {
+  background: rgba(23, 33, 46, 0.94);
+}
+
+.service-card:hover::after {
+  transform: scaleX(1);
+}
+
+.services-section .service-index {
+  font-size: 0.66rem;
+  color: var(--stone-dim);
+}
+
+.service-card:hover .service-index {
+  color: var(--red-bright);
+}
+
+.service-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.service-description {
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.services-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.services-cta .arrow {
+  color: var(--red-bright);
+}
+
+@media (max-width: 1024px) {
+  .services-content {
+    padding: 0 2.5rem;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card {
+    padding: 1.1rem 1.1rem 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-content {
+    padding: 0 1.25rem;
+    gap: 1.4rem;
+  }
+  .service-description {
+    font-size: 0.76rem;
+  }
+  .service-name {
+    font-size: 0.92rem;
+  }
+  .services-cta {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-description {
+    display: none; /* keep all eight cards inside one viewport on phones */
+  }
+  .service-card {
+    padding: 0.85rem 0.9rem;
+  }
+}

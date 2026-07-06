@@ -13,10 +13,14 @@ import './House3D.css';
 
 // Per-section camera + mood. drawing = edge-line opacity, glow = window warmth.
 const VIEWS = {
-  landing: { pos: [8.0, 2.9, 10.0], target: [-2.15, 1.0, 0], drawing: 0.55, glow: 1.0 },
-  hero:    { pos: [-8.2, 2.6, 9.2], target: [0.6, 1.2, 0], drawing: 0.95, glow: 0.55 },
-  rooms:   { pos: [9.5, 4.6, 11.5], target: [0, 0.9, 0], drawing: 0.15, glow: 0.5 },
-  footer:  { pos: [0.5, 1.5, 16.0], target: [0, 0.9, 0], drawing: 0.1, glow: 1.5 },
+  landing:   { pos: [8.0, 2.9, 10.0], target: [-2.15, 1.0, 0], drawing: 0.55, glow: 1.0 },
+  hero:      { pos: [-8.2, 2.6, 9.2], target: [0.6, 1.2, 0], drawing: 0.95, glow: 0.55 },
+  services:  { pos: [-4.5, 7.5, 12.5], target: [0, 0.4, 0], drawing: 0.8, glow: 0.4 },
+  rooms:     { pos: [9.5, 4.6, 11.5], target: [0, 0.9, 0], drawing: 0.15, glow: 0.5 },
+  portfolio: { pos: [11.5, 2.2, 6.5], target: [-1.5, 1.1, 0], drawing: 0.3, glow: 0.7 },
+  gallery:   { pos: [10.0, 3.5, 13.0], target: [0, 0.9, 0], drawing: 0.2, glow: 0.45 },
+  estimate:  { pos: [-6.0, 2.0, 12.5], target: [0.8, 1.0, 0], drawing: 0.45, glow: 1.1 },
+  footer:    { pos: [0.5, 1.5, 16.0], target: [0, 0.9, 0], drawing: 0.1, glow: 1.5 },
 };
 
 const smoothstep = (a, b, t) => {
