@@ -39,6 +39,27 @@
   display: flex;
   align-items: center;
   user-select: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  margin: -8px 0 0 -14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Scrolled past the landing: the logo becomes a compact chip on its own
+   backdrop, so it floats over content instead of crashing into it */
+.sm-logo--scrolled {
+  background: rgba(11, 17, 24, 0.6);
+  border-color: rgba(244, 241, 236, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.sm-logo--scrolled .sm-logo-img {
+  height: 34px;
 }
 
 .sm-logo-img {
@@ -46,6 +67,7 @@
   height: 46px;
   width: auto;
   object-fit: contain;
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .sm-toggle {

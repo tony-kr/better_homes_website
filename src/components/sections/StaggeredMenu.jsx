@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
 
@@ -21,6 +21,7 @@ export const StaggeredMenu = ({
   onMenuClose
 }) => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const openRef = useRef(false);
   const panelRef = useRef(null);
   const preLayersRef = useRef(null);
@@ -326,6 +327,15 @@ export const StaggeredMenu = ({
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
+  // The logo yields to content once the visitor scrolls — it fades out
+  // instead of sitting on top of section headings
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.35);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -365,16 +375,21 @@ export const StaggeredMenu = ({
         })()}
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <div className="sm-logo" aria-label="Logo">
+        <a
+          className={'sm-logo' + (scrolled && !open ? ' sm-logo--scrolled' : '')}
+          href="#landing"
+          aria-label="Better Homes — go to home"
+          onClick={closeMenu}
+        >
           <img
             src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
-            alt="Logo"
+            alt="Better Homes logo"
             className="sm-logo-img"
             draggable={false}
             width={110}
             height={24}
           />
-        </div>
+        </a>
         <button
           ref={toggleBtnRef}
           className="sm-toggle"

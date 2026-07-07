@@ -56,8 +56,8 @@ const Footer = () => {
           <div className="footer-column">
             <h4 className="annotation">Visit</h4>
             <ul>
-              <li>100 Feet Road, Indiranagar</li>
-              <li>Bangalore 560038</li>
+              <li>170 2nd Block, Banashankari 6th Stage 1st Block</li>
+              <li>Channasandra, Bengaluru, Karnataka 560098</li>
               <li><a href="tel:+919876543210">+91 98765 43210</a></li>
               <li>Mon–Sat, 10AM–7PM</li>
             </ul>

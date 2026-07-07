@@ -90,7 +90,7 @@ const EstimateSection = () => {
             </li>
             <li>
               <span className="annotation">Visit</span>
-              <span>100 Feet Road, Indiranagar — Mon–Sat, 10AM–7PM</span>
+              <span>170 2nd Block, Banashankari 6th Stage 1st Block, Channasandra, Bengaluru — Mon–Sat, 10AM–7PM</span>
             </li>
           </ul>
         </motion.div>
