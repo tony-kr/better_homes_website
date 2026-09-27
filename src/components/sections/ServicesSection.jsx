@@ -5,39 +5,49 @@ import { sheetNumber } from '../../data/journey';
 
 const sheet = sheetNumber('services');
 
-// Full service list from betterhomesindia.in
+// The trades Better Homes delivers under one roof (client brief,
+// September 2026): turnkey interiors, modular work, construction and every
+// service trade a home needs.
 const services = [
   {
-    title: 'Modular Kitchen',
-    description: 'Sleek, functional kitchens with premium finishes — from BWR plywood to marine-grade materials.'
+    title: 'Turnkey Interiors',
+    description: 'Design to handover under one contract: we plan, build and furnish, then hand you the keys.'
   },
   {
-    title: 'Living Room Design',
-    description: 'Curated living spaces that balance comfort and aesthetics with custom furniture and lighting.'
+    title: 'Modular Kitchens & Wardrobes',
+    description: 'Kitchens, wardrobes and storage modules in BWR and marine-grade ply, made to fit and finished to last.'
   },
   {
-    title: 'Bedroom Interiors',
-    description: 'Personalized bedrooms with designer wardrobes, false ceilings, and ambient lighting.'
+    title: 'Construction',
+    description: 'New builds and extensions, from foundation and structure through to a finished shell.'
   },
   {
-    title: 'Bathroom Design',
-    description: 'Spa-inspired bathrooms with premium tiles, fixtures, and waterproof finishes.'
+    title: 'Renovation',
+    description: 'A kitchen, a bathroom or the whole home, opened up and rebuilt around how you live now.'
   },
   {
-    title: 'Color Consultation',
-    description: 'Expert guidance on color schemes tuned to your space, its light, and your taste.'
+    title: 'Electrical',
+    description: 'Wiring, points and lighting circuits, planned with the interior layout rather than after it.'
   },
   {
-    title: 'Smart Lighting',
-    description: 'IoT-enabled lighting scenes — day to evening ambiance with automated smart controls.'
+    title: 'False Ceiling',
+    description: 'Gypsum and POP ceilings with coves, profiles and concealed lighting.'
   },
   {
-    title: 'Wall Treatments',
-    description: 'Textured walls, accent panels, and decorative finishes that define each space.'
+    title: 'Plumbing',
+    description: 'Concealed supply and drainage for kitchens and bathrooms, laid before a single tile goes down.'
   },
   {
-    title: 'Space Planning',
-    description: 'Optimal layout design maximizing every square foot with 3D spatial analysis.'
+    title: 'Tiling & Flooring',
+    description: 'Floors, walls and bathrooms in vitrified tile, marble and natural stone.'
+  },
+  {
+    title: 'Painting',
+    description: 'Interior and exterior finishes and textures, from primer to the final coat.'
+  },
+  {
+    title: 'Metal Fabrication',
+    description: 'Gates, grills, railings, staircases and custom steelwork, fabricated to drawing.'
   }
 ];
 
@@ -52,8 +62,9 @@ const ServicesSection = ({ onNavigate }) => (
           Everything a home needs, <span className="accent">under one roof</span><span className="dot">.</span>
         </MaskReveal>
         <motion.p className="services-lede" {...rise(0.2)}>
-          One team from the first measurement to the last cushion: design,
-          joinery, lighting and finishing, managed end to end.
+          Every trade a home needs, from structure and services to the
+          last coat of paint, managed by one team so nothing falls between
+          contractors.
         </motion.p>
         <motion.div {...rise(0.3)}>
           <button className="btn-primary" onClick={() => onNavigate?.('estimate')}>

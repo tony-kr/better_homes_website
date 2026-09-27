@@ -8,17 +8,18 @@ const sheet = sheetNumber('hero');
 
 const metrics = [
   { value: '500+', label: 'Homes transformed' },
-  { value: '50+', label: 'Design experts' },
+  { value: '50+', label: 'Designers & tradespeople' },
   { value: '98%', label: 'Client satisfaction' }
 ];
 
+// The kinds of project the studio takes on. The trades themselves are
+// listed in Services, so the two sections never repeat each other.
 const disciplines = [
-  'Full homes',
-  'Modular kitchens',
-  'Living rooms',
-  'Bedrooms',
-  'Smart lighting',
-  'Space planning'
+  'Turnkey homes',
+  'New builds',
+  'Renovations',
+  'Apartments & villas',
+  'Commercial spaces'
 ];
 
 const HeroSection = () => {
@@ -62,11 +63,12 @@ const HeroSection = () => {
           </MaskReveal>
 
           <p className="hero-lede">
-            Better Homes is Bangalore's trusted interior design studio —
-            crafting beautiful homes since 2014, from cozy 1BHKs in
-            Koramangala to luxury villas in Whitefield. Every project begins
-            with an evening: how the light falls, where the family gathers,
-            which room glows first.
+            Better Homes is more than an interior design studio. We are a
+            turnkey interiors and construction company: since 2014 we have
+            taken homes across Bengaluru, from cozy 1BHKs in Koramangala to
+            luxury villas in Whitefield, from bare shell to move-in ready.
+            One contract, one team and one timeline, from the first wall to
+            the last cushion.
           </p>
 
           <div className="hero-metrics">
@@ -92,7 +94,7 @@ const HeroSection = () => {
           animate={hasEntered ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="annotation disciplines-title">What we design</p>
+          <p className="annotation disciplines-title">What we build</p>
           <ul className="disciplines-list">
             {disciplines.map((d) => (
               <li className="discipline-item" key={d}>{d}</li>

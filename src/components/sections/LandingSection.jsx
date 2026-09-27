@@ -34,7 +34,7 @@ const LandingSection = ({ onNavigate, revealed = true }) => (
     <div className="landing-plate">
       <motion.p className="landing-eyebrow" {...fade(0.3, revealed)}>
         <span className="landing-eyebrow-dot" aria-hidden="true" />
-        Better Homes <span className="landing-eyebrow-sep">/</span> Interior design, Bengaluru
+        <span className="landing-eyebrow-brand">Better Homes <span className="landing-eyebrow-sep">/</span></span> Turnkey interiors &amp; construction, Bengaluru
       </motion.p>
 
       <h1 className="landing-title">

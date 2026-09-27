@@ -1,0 +1,13 @@
+# Only the website is built and served; the Blender sources, client
+# references and tests stay out of the upload
+blender
+interiors
+issues
+suggestions
+sample_target
+tests
+dist
+node_modules
+.vite
+*.blend
+*.blend1

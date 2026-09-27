@@ -46,11 +46,11 @@ const Footer = () => {
           <div className="footer-column">
             <h4 className="annotation">Services</h4>
             <ul>
-              <li><a href="#services">Modular Kitchen</a></li>
-              <li><a href="#services">Living Room</a></li>
-              <li><a href="#services">Bedroom</a></li>
-              <li><a href="#services">Full Home</a></li>
-              <li><a href="#services">Commercial Interiors</a></li>
+              <li><a href="#services">Turnkey Interiors</a></li>
+              <li><a href="#services">Modular Kitchens</a></li>
+              <li><a href="#services">Construction</a></li>
+              <li><a href="#services">Renovation</a></li>
+              <li><a href="#services">Metal Fabrication</a></li>
             </ul>
           </div>
 

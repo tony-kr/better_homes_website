@@ -74,7 +74,7 @@ const Loading = ({ percent, ready = true }) => {
           <span className="splash-pct">%</span>
         </span>
         <span className="splash-caption">
-          Interior design <span className="splash-dot" aria-hidden="true" /> Bengaluru
+          Turnkey interiors <span className="splash-dot" aria-hidden="true" /> Bengaluru
         </span>
       </div>
       <div className="splash-bar" aria-hidden="true">
