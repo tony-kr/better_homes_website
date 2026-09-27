@@ -1,0 +1,95 @@
+{
+  "createdAt": "2026-09-20T06:18:24.193663+00:00",
+  "maps": [
+    {
+      "path": "textures/limestone-color.png",
+      "sha256": "d5a69a70e8e9e1b9f5bf17e2ca455d9738eeda2c6fb86df85e3eb698f110a544",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/limestone-normal.png",
+      "sha256": "78cc519d86b9ac43987f10ec1e27c49ddb1f7c0ee8c783ef4172e7784ed9d183",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/limestone-rough.png",
+      "sha256": "6a2719f72fc387085b69b39faf8511b9741aeb59ca89edf66a1aa7189da5ada3",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/linen-color.png",
+      "sha256": "0fdadb15cd1e1696dfac8e59c6a798d86d5432af2c5e28081a4cc5f0a049b4bf",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/linen-normal.png",
+      "sha256": "cb331c029753e9dc98ffa8c0574e2d5089c7dff1cc02cbe816b7a84bb95e3c61",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/linen-rough.png",
+      "sha256": "f9f8f8721f341542b9d686f48207addab7fc5eb4e14380343268ffe463c7691c",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/oak-color.png",
+      "sha256": "3fceff3f7fb0cd9513969b96971a5fe304baf4b83484e840d1f0d86d80f49d33",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/oak-normal.png",
+      "sha256": "0e11daf3b819c68f6d025984bf84d093032f7b7fd8ed0d9e23d32f8d3975cec4",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/oak-rough.png",
+      "sha256": "5ebe5eb4d4df32d471d8f477c358c276bb52389df12b156997b7244262154e74",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/plaster-color.png",
+      "sha256": "972310e2d56f2d8f3bbc943f632976f5ab1a603d684d422dda335a5db56f9f45",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/plaster-normal.png",
+      "sha256": "260f2f3849486fd8732eeb495a1d7e4469ece481b1b90d72cd4ee91b57bc0ac6",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/plaster-rough.png",
+      "sha256": "c31a023ee3714332f8c3d3066b41badc1abc5ed871d67486f8cba0c3e949587b",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/rug-color.png",
+      "sha256": "d365810074e2bda1d7647df381f09abe94e12a37a02c2449fd2d9a6b292b3624",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/rug-normal.png",
+      "sha256": "82c8884a185fa95cf6abd191cfd10be125d48f0a492ad300545470e0c202b480",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/rug-rough.png",
+      "sha256": "e6dbe601536e8dda243a9370d011eceff8a3851fb9874ab6e04c46ed6535f038",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/travertine-color.png",
+      "sha256": "648613cbf75ba990f5393e7faa9390d568b2fe7b4fa887a55609dc69c755c937",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/travertine-normal.png",
+      "sha256": "7411d07e20b42bb945c6cb30ce2e96c309838a30134270c598beed8b92587f28",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    },
+    {
+      "path": "textures/travertine-rough.png",
+      "sha256": "d452e1c9bd9bebfc567873509dba6f62c048cff8e03c1c331fc95480c1bb0661",
+      "provenance": "Original deterministic map from make_materials.py; no external assets"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schema": "game-room.prop-manifest.v1",
+  "roomId": "premium-courtyard-home",
+  "generation": {
+    "provider": "meshy",
+    "apiModel": "meshy-5",
+    "pricingSource": "https://docs.meshy.ai/en/api/pricing",
+    "pricingVerifiedAt": "",
+    "creditsPerTexturedTask": 15,
+    "hardCreditCeiling": 0,
+    "maxChargedAttemptsPerAsset": 2,
+    "note": "No paid generation proposed. Furniture concepts are authored in Blender. Meshy-only validator conditions remain unsatisfied; do not fabricate pricing or spend approval."
+  },
+  "assets": [
+    {
+      "id": "sofa",
+      "function": "Tailored three-seat sofa",
+      "description": "Tailored three-seat sofa",
+      "class": "hero",
+      "dimensionsMeters": [
+        3.8,
+        1.05,
+        1.03
+      ],
+      "attachmentFace": "floor",
+      "semanticFront": "negative-y",
+      "targetPolycount": 18000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Tailored three-seat sofa; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    },
+    {
+      "id": "table",
+      "function": "Travertine pedestal coffee table",
+      "description": "Travertine pedestal coffee table",
+      "class": "hero",
+      "dimensionsMeters": [
+        1.4,
+        1.4,
+        0.385
+      ],
+      "attachmentFace": "floor",
+      "semanticFront": "negative-y",
+      "targetPolycount": 8000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Travertine pedestal coffee table; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    },
+    {
+      "id": "chair",
+      "function": "Oak and upholstered dining chair",
+      "description": "Oak and upholstered dining chair",
+      "class": "reusable",
+      "dimensionsMeters": [
+        0.57,
+        0.6,
+        1.03
+      ],
+      "attachmentFace": "floor",
+      "semanticFront": "negative-y",
+      "targetPolycount": 6000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Oak and upholstered dining chair; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    },
+    {
+      "id": "bed",
+      "function": "Upholstered bed with oak headboard",
+      "description": "Upholstered bed with oak headboard",
+      "class": "hero",
+      "dimensionsMeters": [
+        3.5,
+        2.5,
+        1.5
+      ],
+      "attachmentFace": "floor",
+      "semanticFront": "negative-y",
+      "targetPolycount": 24000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Upholstered bed with oak headboard; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    },
+    {
+      "id": "island",
+      "function": "Stone waterfall kitchen island",
+      "description": "Stone waterfall kitchen island",
+      "class": "hero",
+      "dimensionsMeters": [
+        1.34,
+        2.85,
+        0.98
+      ],
+      "attachmentFace": "floor",
+      "semanticFront": "negative-y",
+      "targetPolycount": 16000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Stone waterfall kitchen island; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    },
+    {
+      "id": "pendant",
+      "function": "Suspended linen pendant",
+      "description": "Suspended linen pendant",
+      "class": "reusable",
+      "dimensionsMeters": [
+        0.64,
+        0.64,
+        0.92
+      ],
+      "attachmentFace": "ceiling",
+      "semanticFront": "negative-z",
+      "targetPolycount": 4000,
+      "intendedInstances": 0,
+      "rejectionCriteria": [
+        "Floating support or visible mesh penetration",
+        "Incorrect real-world dimensions",
+        "Faceting visible at the production camera"
+      ],
+      "image": {
+        "source": "images/furniture-reference.png",
+        "generator": "Blender 5.0.1 / build_concept.py",
+        "prompt": "Suspended linen pendant; native Blender concept geometry, authored in the home at real scale.",
+        "approved": true,
+        "approvedBy": "user"
+      }
+    }
+  ]
+}

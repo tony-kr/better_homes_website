@@ -1,0 +1,14 @@
+{
+  "scope": "Interior finishing only",
+  "status": "pending-human-form-review",
+  "referenceFolder": "../../../sample_target",
+  "candidate": "natural-interior.blend",
+  "review": "review.html",
+  "runtimeExported": false,
+  "websiteModified": false,
+  "strangestElement": "Exterior planting and some existing simplified fixtures still read as procedural; preserved within the finishing-only scope.",
+  "proposedLesson": {
+    "status": "pending",
+    "observation": "A new drape can intersect beveled upholstery even when its control surface looks plausible; inspect its complete support contact in the production view before keeping it."
+  }
+}

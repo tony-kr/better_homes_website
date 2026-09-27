@@ -1,0 +1,13 @@
+{
+  "protectedObjectsChecked": 176,
+  "changedWallsCamerasDiningChairs": [],
+  "websiteFilesChecked": 54,
+  "changedWebsiteFiles": [],
+  "sourceTriangles": 542900,
+  "evaluatedTriangles": 546576,
+  "triangleDelta": 3676,
+  "sourceSha256": "9c45e8f9bc2080ab756be4d0f058dcaa93b6770ff860aa5be74478ff4ea6e284",
+  "candidateSha256": "35928c43bca337f6e398aacc7842237aa15fdf3718eb6d7439351c71fa980689",
+  "scope": "Blender finishing candidate, not exported or installed",
+  "formApproval": "pending"
+}

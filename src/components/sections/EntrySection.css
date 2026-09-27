@@ -1,0 +1,59 @@
+/*
+  The hall. Transparent over the live model, and nothing else: the line
+  carries its own shadow over the dark walnut doors.
+*/
+.entry-section {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-bottom: clamp(1.4rem, 4vh, 2.6rem);
+}
+
+.entry-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
+.entry-cue-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.entry-cue-title .dot {
+  color: var(--red-bright);
+}
+
+.entry-cue-line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), transparent);
+  animation: entry-drop 2.2s var(--ease-expo) infinite;
+  transform-origin: top;
+}
+
+.entry-section .entry-cue-hint {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes entry-drop {
+  0% { transform: scaleY(0); opacity: 1; }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-cue-line {
+    animation: none;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "game-room.opening-cutter.v1",
+  "id": "bath-entry",
+  "kind": "door",
+  "widthMeters": 1,
+  "heightMeters": 2.7,
+  "sillMeters": 0,
+  "depthMeters": 0.2,
+  "source": "bath-entry.png",
+  "sourceSha256": "50563b2761b1c80a7540ce6b6c16e991aace9e0a5e0fdc984d9a42c5f67754aa",
+  "imageSize": [
+    160,
+    160
+  ],
+  "contours": [
+    {
+      "role": "outer",
+      "points": [
+        [
+          0.10062893081761007,
+          0
+        ],
+        [
+          0.89937106918239,
+          0
+        ],
+        [
+          0.89937106918239,
+          0.89937106918239
+        ],
+        [
+          0.10062893081761007,
+          0.89937106918239
+        ]
+      ]
+    }
+  ],
+  "generator": "Analytical rectangular concept mask; skill OpenCV tracing pending."
+}

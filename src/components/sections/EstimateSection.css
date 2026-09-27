@@ -1,190 +1,241 @@
 /*
-  Free estimate — the enquiry sheet. Split layout: the invitation on the
-  left, the form on a raised drawing-sheet panel to the right.
+  Free estimate — a single invitation, centred. The form is gone; the WhatsApp
+  button is the whole mechanism, so it gets the weight of the section.
 */
 .estimate-section {
   display: flex;
   align-items: center;
+  justify-content: center;
   background: transparent;
-  padding: 4rem 0;
+  padding: 6rem 0;
 }
 
 .estimate-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 5rem;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.estimate-intro {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  align-items: center;
+  gap: 2.6rem;
+  text-align: center;
+}
+
+.estimate-eyebrow {
+  margin-bottom: 1.2rem;
 }
 
 .estimate-title {
-  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  font-size: clamp(2.3rem, 4.6vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  max-width: 16ch;
+  margin: 0 auto;
 }
+
 
 .estimate-lede {
-  max-width: 42ch;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin: 1.2rem auto 0;
 }
 
-.estimate-details {
-  list-style: none;
+/* ------------------------------------------------------------- the button */
+.estimate-action {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  margin-top: 0.6rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* WhatsApp green would fight the brand, so the button stays red and the
+   mark carries the recognition. */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.3rem 2.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--red);
+  border: 1px solid var(--red);
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(213, 0, 0, 0.25);
+  transition: background 0.4s var(--ease-out-soft),
+              box-shadow 0.4s var(--ease-out-soft),
+              transform 0.4s var(--ease-out-soft);
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp:focus-visible {
+  background: var(--red-bright);
+  box-shadow: 0 20px 46px rgba(213, 0, 0, 0.32);
+  transform: translateY(-3px);
+}
+
+.btn-whatsapp .arrow {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-out-soft);
+}
+
+.btn-whatsapp:hover .arrow {
+  transform: translateX(5px);
+}
+
+.btn-whatsapp svg {
+  flex-shrink: 0;
+}
+
+.estimate-section .estimate-reassure {
+  font-size: 0.64rem;
+  color: var(--ink-dim);
+}
+
+/* ---------------------------------------------------------------- the steps */
+.estimate-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.estimate-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.7rem 1.4rem;
+  background: var(--paper);
+  text-align: left;
+}
+
+.estimate-section .estimate-step-n {
+  font-size: 0.66rem;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.estimate-step-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.estimate-step-body {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------- the details */
+.estimate-details {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem 2.4rem;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 0 0;
+  border-top: 1px solid var(--line);
+  text-align: left;
 }
 
 .estimate-details li {
-  display: grid;
-  grid-template-columns: 3.6rem 1fr;
-  gap: 1.2rem;
-  align-items: baseline;
-  font-size: 0.9rem;
-  color: var(--stone);
-}
-
-.estimate-details .annotation {
-  font-size: 0.6rem;
-  color: var(--stone-dim);
-}
-
-.estimate-details a {
-  color: var(--plaster);
-  text-decoration: none;
-  transition: color 0.35s var(--ease-out-soft);
-}
-
-.estimate-details a:hover {
-  color: var(--red-bright);
-}
-
-/* The form panel */
-.estimate-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  background: rgba(16, 24, 35, 0.88);
-  border: 1px solid var(--line);
-  padding: 2.2rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.1rem;
-}
-
-.form-field {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
 }
 
-.form-field .annotation {
+.estimate-details .annotation {
   font-size: 0.6rem;
+  color: var(--ink-dim);
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--plaster);
-  background: var(--ink-800);
-  border: 1px solid var(--line);
-  padding: 0.75rem 0.9rem;
-  border-radius: 0;
-  outline: none;
-  transition: border-color 0.35s var(--ease-out-soft);
-  width: 100%;
-  resize: none;
-}
-
-.form-field input::placeholder,
-.form-field textarea::placeholder {
-  color: var(--stone-dim);
-}
-
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
-  border-color: var(--red);
-}
-
-.form-field select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2393a0ae' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.9rem center;
-  cursor: pointer;
-}
-
-.estimate-submit {
-  display: flex;
+.contact-link {
+  display: inline-flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-top: 0.3rem;
-  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out-soft);
 }
 
-.estimate-section .estimate-sent {
-  font-size: 0.6rem;
-  color: var(--lamp-bright);
+.contact-link svg {
+  flex-shrink: 0;
+  color: var(--red);
+  transition: transform 0.3s var(--ease-out-soft);
 }
 
-@media (max-width: 1024px) {
-  .estimate-content {
-    padding: 0 2.5rem;
-    gap: 2.5rem;
+.contact-link:hover {
+  color: var(--red);
+}
+
+.contact-link:hover svg {
+  transform: scale(1.12);
+}
+
+.contact-link.is-static {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  align-items: flex-start;
+}
+
+.contact-link.is-static svg {
+  margin-top: 0.2rem;
+}
+
+/* The WhatsApp mark keeps its own green so it is recognised instantly */
+.contact-link.is-whatsapp svg {
+  color: #25d366;
+}
+
+@media (max-width: 900px) {
+  .estimate-steps {
+    grid-template-columns: 1fr;
   }
-  .estimate-form {
-    padding: 1.6rem;
+
+  .estimate-details {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  /* Phone: the section grows with the form — nothing overlaps or clips.
-     Extra bottom padding keeps the submit row clear of the sheet indicator. */
   .estimate-section {
-    padding: 4.5rem 0 6.5rem;
-    align-items: flex-start;
+    padding: 6.5rem 0 4.5rem;
   }
+
   .estimate-content {
-    grid-template-columns: 1fr;
     padding: 0 1.25rem;
-    gap: 1.6rem;
+    gap: 2rem;
   }
-  .estimate-lede,
-  .estimate-details {
-    display: none; /* phone: the form is the section; details live in the footer */
+
+  .btn-whatsapp {
+    padding: 1.1rem 1.6rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    gap: 0.6rem;
   }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .estimate-form {
-    padding: 1.2rem;
-    gap: 0.9rem;
-  }
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    font-size: 1rem; /* ≥16px stops iOS zoom-jump into fields */
-  }
-  .estimate-submit {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
+
+  .estimate-lede {
+    font-size: 0.98rem;
   }
 }

@@ -1,4 +1,17 @@
+import { WhatsAppIcon, PhoneIcon } from '../icons';
+import {
+  ESTIMATE_LINK,
+  PHONE_NUMBER,
+  PHONE_DISPLAY,
+  WHATSAPP_DISPLAY,
+  EMAIL,
+  STUDIO_HOURS
+} from '../../data/contact';
+import { MaskReveal } from '../motion';
 import './Footer.css';
+import { sheetNumber } from '../../data/journey';
+
+const sheet = sheetNumber('footer');
 
 const Footer = () => {
   return (
@@ -7,15 +20,26 @@ const Footer = () => {
 
         <div className="footer-invite">
           <p className="annotation footer-eyebrow">
-            08 <span className="tick">/</span> 08 — Start a project
+            {sheet.n} <span className="tick">/</span> {sheet.total} — Start a project
           </p>
-          <h2 className="footer-headline">
+          <MaskReveal className="footer-headline">
             Every home here started as a sketch.<br />
-            <em>Let's draw yours.</em>
-          </h2>
-          <a href="mailto:hello@betterhomes.in" className="footer-email">
-            hello@betterhomes.in
-          </a>
+            <span className="accent">Let's draw yours</span><span className="dot">.</span>
+          </MaskReveal>
+          <div className="footer-reach">
+            <a href={`mailto:${EMAIL}`} className="footer-email">
+              {EMAIL}
+            </a>
+            <a
+              className="footer-wa"
+              href={ESTIMATE_LINK}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <WhatsAppIcon size={20} />
+              <span>Message us on WhatsApp</span>
+            </a>
+          </div>
         </div>
 
         <div className="footer-grid">
@@ -37,7 +61,7 @@ const Footer = () => {
               <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="#stories">Client stories</a></li>
               <li><a href="#/gallery">Gallery</a></li>
-              <li><a href="#rooms">The spaces</a></li>
+              <li><a href="#living">Walk the house</a></li>
               <li><a href="#estimate">Free estimate</a></li>
             </ul>
           </div>
@@ -58,8 +82,24 @@ const Footer = () => {
             <ul>
               <li>170 2nd Block, Banashankari 6th Stage 1st Block</li>
               <li>Channasandra, Bengaluru, Karnataka 560098</li>
-              <li><a href="tel:+919876543210">+91 98765 43210</a></li>
-              <li>Mon–Sat, 10AM–7PM</li>
+              <li>
+                <a className="footer-contact" href={`tel:${PHONE_NUMBER}`}>
+                  <PhoneIcon size={14} />
+                  {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a
+                  className="footer-contact is-whatsapp"
+                  href={ESTIMATE_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <WhatsAppIcon size={15} />
+                  {WHATSAPP_DISPLAY}
+                </a>
+              </li>
+              <li>{STUDIO_HOURS}</li>
             </ul>
           </div>
 
@@ -75,7 +115,7 @@ const Footer = () => {
 
         <div className="footer-bottom annotation">
           <span>&copy; 2026 Better Homes — Crafting Better Living</span>
-          <span>Drawn at blue hour</span>
+          <span>Designed &amp; built in Bengaluru</span>
         </div>
 
       </div>

@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { MaskReveal } from '../motion';
 import './HeroSection.css';
+import { sheetNumber } from '../../data/journey';
+
+const sheet = sheetNumber('hero');
 
 const metrics = [
   { value: '500+', label: 'Homes transformed' },
@@ -50,12 +54,12 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="annotation hero-eyebrow">
-            02 <span className="tick">/</span> 08 — The studio
+            {sheet.n} <span className="tick">/</span> {sheet.total} — The studio
           </p>
 
-          <h2 className="hero-title">
-            Built for the hour you <em>come home</em>.
-          </h2>
+          <MaskReveal className="hero-title">
+            Built for the hour you <span className="accent">come home</span><span className="dot">.</span>
+          </MaskReveal>
 
           <p className="hero-lede">
             Better Homes is Bangalore's trusted interior design studio —

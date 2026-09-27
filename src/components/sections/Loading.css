@@ -1,100 +1,138 @@
-:root {
-  --vh: 100vh;
-  --cWidth: 100%;
-  --cMaxWidth: 1400px;
-  --backgroundColor: #eae5ec;
-}
-
-.loading-master-container {
+/*
+  Splash screen. Paper white, the red mark, a large counter and a red rule
+  that fills with the load. It leaves by lifting like a curtain.
+*/
+.splash {
   position: fixed;
   inset: 0;
   z-index: 99999999;
-  background-color: var(--backgroundColor);
-  overflow: hidden;
-}
-
-.loading-screen {
-  width: 100vw;
-  height: var(--vh);
   display: flex;
   flex-direction: column;
-  place-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.loading-title-text {
-  font-size: 15vw;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-  line-height: 0.8;
-  letter-spacing: -5px;
-  text-transform: uppercase;
-}
-
-.loading-wrap {
-  --Lsize: 145px;
-  padding: 6px;
-  position: relative;
-  border-radius: 100px;
-  background-color: #000;
-  overflow: hidden;
-  transition: 0.8s cubic-bezier(0.33, 0.11, 1, 0.72);
-  display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  color: var(--ink);
+  background: var(--paper);
+  transition: transform 1.1s var(--ease-in-out);
+  will-change: transform;
+  touch-action: none;
 }
 
-.loading-clicked {
-  min-width: 400vw;
-  min-height: 400vh;
-  border-radius: 5000px;
-  box-shadow: none;
+.splash-leaving {
+  transform: translateY(-100%);
 }
 
-.loading-button {
-  padding: 20px 50px;
-  border-radius: 100px;
-  background-color: #000;
-  color: white;
-  position: relative;
-  z-index: 9;
+.splash-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.45s ease, transform 0.9s var(--ease-in-out);
+  animation: splash-rise 1.2s var(--ease-expo) both;
 }
 
-.loading-hover {
-  background-color: #a87cff;
-  width: 250px;
-  height: 120px;
-  position: absolute;
-  top: var(--mouse-y);
-  left: var(--mouse-x);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(30px);
+.splash-leaving .splash-inner {
   opacity: 0;
-  transition: opacity 0.5s;
+  transform: translateY(-48px);
 }
 
-.loading-wrap:hover .loading-hover { opacity: 1; }
+.splash-logo {
+  width: clamp(180px, 20vw, 260px);
+  height: auto;
+}
 
-.loaderGame-ball {
+.splash-foot {
   position: absolute;
-  left: 20%;
-  top: 0;
-  width: 15px;
-  height: 15px;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: clamp(1.6rem, 5vh, 3rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: opacity 0.4s ease;
+}
+
+.splash-leaving .splash-foot {
+  opacity: 0;
+}
+
+.splash-count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.splash-pct {
+  color: var(--red);
+  margin-left: 0.04em;
+}
+
+.splash-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 0.4rem;
+}
+
+.splash-dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: #a87cff;
-  animation: ball25 7s infinite cubic-bezier(0.3, 1.18, 0.63, 1.28);
+  background: var(--red);
 }
 
-@keyframes ball25 {
-  0%, 30%, 67%, 90%, 100% { transform: translateY(70px); }
-  15%, 45%, 80% { transform: translateY(10px); }
+.splash-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--paper-warm);
 }
 
-@keyframes loaderGame {
-  to { transform: translateX(-300px); }
+.splash-bar span {
+  display: block;
+  height: 100%;
+  background: var(--red);
+  transform-origin: left center;
+}
+
+@keyframes splash-rise {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 600px) {
+  .splash-foot {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .splash-caption {
+    font-size: 0.66rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash,
+  .splash-inner {
+    transition: opacity 0.4s ease;
+    animation: none;
+  }
+
+  .splash-leaving {
+    transform: none;
+    opacity: 0;
+  }
 }

@@ -1,0 +1,150 @@
+{
+  "walls": [
+    {
+      "wall": "South facade",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 6.566000091165295
+    },
+    {
+      "wall": "North facade",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 8.672000258922566
+    },
+    {
+      "wall": "West facade",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 7.335999811768527
+    },
+    {
+      "wall": "East facade",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 8.679999862313267
+    },
+    {
+      "wall": "South gallery partition",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 6.901199618911725
+    },
+    {
+      "wall": "North gallery partition",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 8.875799945855123
+    },
+    {
+      "wall": "North dividing wall 5",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 3.348000030040737
+    },
+    {
+      "wall": "North dividing wall 9",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 3.348000030040737
+    },
+    {
+      "wall": "North dividing wall 12",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 3.348000030040737
+    },
+    {
+      "wall": "Kitchen screen",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 2.037600048351285
+    },
+    {
+      "wall": "Utility partition",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 3.348000030040737
+    },
+    {
+      "wall": "Suite service wall",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 2.278800003433225
+    },
+    {
+      "wall": "Ensuite partition",
+      "nonManifoldEdges": 0,
+      "volumeCubicMeters": 1.6740000150203684
+    }
+  ],
+  "apertures": [
+    {
+      "id": "arrival",
+      "centerApertureClear": true
+    },
+    {
+      "id": "living-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "dining-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "kitchen-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "utility-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "guest-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "study-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "bath-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "suite-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "dining-kitchen",
+      "centerApertureClear": true
+    },
+    {
+      "id": "dressing-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "ensuite-entry",
+      "centerApertureClear": true
+    },
+    {
+      "id": "terrace-passage",
+      "centerApertureClear": true
+    },
+    {
+      "id": "garden-9.5",
+      "centerApertureClear": true
+    },
+    {
+      "id": "garden-14.5",
+      "centerApertureClear": true
+    },
+    {
+      "id": "north-2.5",
+      "centerApertureClear": true
+    },
+    {
+      "id": "north-7",
+      "centerApertureClear": true
+    },
+    {
+      "id": "north-14.5",
+      "centerApertureClear": true
+    },
+    {
+      "id": "north-18.5",
+      "centerApertureClear": true
+    }
+  ],
+  "allWallsManifold": true,
+  "allApertureCentersClear": true,
+  "limitations": "Checks wall meshes and aperture centers; not an exhaustive whole-shell leak or prop-intersection proof."
+}

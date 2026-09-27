@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import './LaserPointer.css';
 
 /*
-  Laser pointer — a red dot that rides the cursor, with a softer glow
-  trailing a breath behind it. Pointer devices only; touch never sees it.
+  Cursor: a red dot on the pointer and a thin ring that eases after it. Over
+  anything clickable the ring opens up, so the page answers the hand before
+  the click. Pointer devices only; touch never sees it.
 */
 const LaserPointer = () => {
   const [enabled, setEnabled] = useState(false);
@@ -53,11 +54,15 @@ const LaserPointer = () => {
 
     const onDown = () => dot.classList.add('is-pressed');
     const onUp = () => dot.classList.remove('is-pressed');
+    const onOver = (e) => {
+      const hot = e.target.closest?.('a, button, [role="button"], input, select, textarea, label');
+      glow.classList.toggle('is-hot', Boolean(hot));
+    };
 
     const tick = () => {
-      // The dot sits on the cursor; the glow eases after it
-      trail.x += (target.x - trail.x) * 0.16;
-      trail.y += (target.y - trail.y) * 0.16;
+      // The dot sits on the cursor; the ring eases after it
+      trail.x += (target.x - trail.x) * 0.2;
+      trail.y += (target.y - trail.y) * 0.2;
       dot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%)`;
       glow.style.transform = `translate3d(${trail.x}px, ${trail.y}px, 0) translate(-50%, -50%)`;
       raf = requestAnimationFrame(tick);
@@ -65,6 +70,7 @@ const LaserPointer = () => {
     raf = requestAnimationFrame(tick);
 
     window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerover', onOver, { passive: true });
     window.addEventListener('pointerdown', onDown);
     window.addEventListener('pointerup', onUp);
     document.documentElement.addEventListener('pointerleave', onLeave);
@@ -72,6 +78,7 @@ const LaserPointer = () => {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerover', onOver);
       window.removeEventListener('pointerdown', onDown);
       window.removeEventListener('pointerup', onUp);
       document.documentElement.removeEventListener('pointerleave', onLeave);

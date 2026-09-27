@@ -1,0 +1,263 @@
+/*
+  A room stop. Transparent by design: the 3D walk shows through. Copy is
+  held to the left third, in white and champagne over the warm dark falloff
+  the canvas paints behind it (HouseJourney.css), so the room stays vivid.
+*/
+.room-stop {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  overflow: visible;
+}
+
+.room-stop-plate {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.15rem;
+  width: min(42ch, 44vw);
+  margin-left: clamp(2rem, 7vw, 8rem);
+  padding: 2rem 0;
+}
+
+.room-stop .room-stop-counter {
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.18em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.room-stop .room-stop-counter .tick {
+  color: var(--red-on-dark);
+}
+
+.room-stop-title {
+  font-size: clamp(3.2rem, 6.6vw, 6.4rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.room-stop-title .dot {
+  color: var(--red-bright);
+}
+
+.room-stop-description {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 38ch;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+}
+
+.room-stop .room-stop-note {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.18em;
+  max-width: 40ch;
+  line-height: 1.9;
+}
+
+.room-stop :focus-visible {
+  outline-color: #fff;
+}
+
+.room-stop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 0.9rem;
+}
+
+.room-stop .room-stop-concepts {
+  color: #fff;
+}
+
+.room-stop .room-stop-concepts:hover,
+.room-stop .room-stop-concepts:focus-visible {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.room-stop-concepts .arrow {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-out-soft);
+}
+
+.room-stop-concepts:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* Progress ticks down the right edge */
+.room-stop-ticks {
+  position: absolute;
+  right: clamp(1.4rem, 3vw, 3rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.room-tick {
+  width: 22px;
+  height: 1px;
+  background: rgba(244, 241, 236, 0.28);
+  transition: background 0.5s var(--ease-out-soft), width 0.5s var(--ease-out-soft);
+}
+
+.room-tick.on {
+  width: 42px;
+  background: var(--red-bright);
+}
+
+/* Keep-scrolling hint, bottom centre */
+.room-stop-next {
+  position: absolute;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.64rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out-soft);
+}
+
+.room-stop-next.visible {
+  opacity: 1;
+}
+
+.room-stop-next-line {
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.75), transparent);
+}
+
+@media (max-width: 1024px) {
+  .room-stop-plate {
+    width: min(46ch, 62vw);
+  }
+}
+
+/* On phones and small tablets the copy sits at the foot of the frame, over
+   the dark gradient HouseJourney.css paints at the same 900px breakpoint */
+@media (max-width: 900px) {
+  .room-stop {
+    align-items: flex-end;
+  }
+
+  .room-stop-plate {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 1.5rem 6.5rem;
+    gap: 0.9rem;
+  }
+
+  .room-stop-title {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+
+  .room-stop-description {
+    font-size: 0.98rem;
+    max-width: none;
+  }
+
+  .room-stop .room-stop-note {
+    display: none;
+  }
+
+  .room-stop-actions {
+    gap: 1rem;
+    margin-top: 0.6rem;
+  }
+
+  .room-stop-ticks {
+    right: 1rem;
+    gap: 9px;
+  }
+
+  .room-tick {
+    width: 14px;
+  }
+
+  .room-tick.on {
+    width: 26px;
+  }
+
+  .room-stop-next {
+    display: none;
+  }
+}
+
+/* Chapter card — shown on the room that opens a new part of the home */
+.room-chapter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+}
+
+.room-chapter-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.room-chapter-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.55rem;
+  border-radius: 50%;
+  background: var(--red-bright);
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+.room-chapter-rule {
+  flex: 1;
+  min-width: 18px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.room-chapter-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--red-on-dark);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 768px) {
+  .room-chapter {
+    gap: 0.5rem;
+    padding-bottom: 0.7rem;
+  }
+
+  .room-chapter-title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "scope": "3D interiors only",
+  "replacedCushions": [
+    "Sofa cushion",
+    "Sofa cushion.001",
+    "Sofa cushion.002",
+    "Pillow",
+    "Pillow.001",
+    "Pillow.002",
+    "Pillow.003",
+    "Sofa scatter cushion",
+    "Sofa scatter cushion.001",
+    "Euro pillow",
+    "Euro pillow.001",
+    "Bed cushion",
+    "Bed cushion.001"
+  ],
+  "source": "../premium-interior.blend",
+  "candidate": "natural-interior.blend",
+  "websiteFilesModified": [],
+  "layoutAndCameras": "unchanged"
+}

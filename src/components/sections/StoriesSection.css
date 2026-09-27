@@ -1,24 +1,33 @@
 /*
-  Client stories — one voice at a time, centre stage.
+  Client stories: a horizontal track of tall photographic cards, each at a
+  slight tilt (after hotelaurelia.online's Experiences). The active card is
+  full strength; the ones waiting their turn sit back and dim.
 */
 .stories-section {
   display: flex;
   align-items: center;
-  justify-content: center;
   background: transparent;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
 }
 
 .stories-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 900px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.6rem;
-  text-align: center;
+  gap: clamp(2rem, 4vh, 3rem);
+}
+
+.stories-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 var(--gutter);
 }
 
 .stories-eyebrow {
@@ -26,104 +35,255 @@
 }
 
 .stories-title {
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
-}
-
-/* Quote stage */
-.stories-stage {
-  position: relative;
-  margin: 0;
-  padding: 2.6rem 2rem 2.2rem;
-  border: 1px solid var(--line);
-  background: rgba(16, 24, 35, 0.72);
-}
-
-.stories-mark {
-  position: absolute;
-  top: -2.1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-display);
-  font-size: 4.6rem;
+  font-size: clamp(2.3rem, 4.4vw, 4.2rem);
   font-weight: 800;
-  line-height: 1;
-  color: var(--red-bright);
-  text-shadow: 0 0 34px rgba(213, 0, 0, 0.4);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
 }
 
-.stories-quote {
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.9vw, 1.35rem);
-  font-weight: 500;
-  line-height: 1.7;
-  color: var(--plaster);
-  max-width: 56ch;
-  margin: 0 auto 1.6rem;
-}
 
-.stories-byline {
+/* ------------------------------------------------------------ controls */
+.stories-controls {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
-.stories-name {
+.stories-counter {
   font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--red-bright);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
 }
 
-.stories-project {
-  font-size: 0.6rem;
-  color: var(--stone-dim);
+.stories-counter-now {
+  color: var(--ink);
 }
 
-/* Dots */
-.stories-nav {
-  display: flex;
-  justify-content: center;
-  gap: 0.7rem;
+.stories-counter-sep {
+  margin: 0 0.35em;
+  color: var(--red);
 }
 
-.stories-dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
+.stories-progress {
+  position: relative;
+  width: clamp(60px, 8vw, 110px);
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.stories-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.stories-progress-fill.is-running {
+  animation: stories-progress var(--dur, 5500ms) linear forwards;
+}
+
+@keyframes stories-progress {
+  to { transform: scaleX(1); }
+}
+
+.stories-arrow {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
-  border: 1px solid var(--stone-dim);
-  background: transparent;
+  border: 1px solid var(--line-bright);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: background 0.3s var(--ease-out-soft),
-              border-color 0.3s var(--ease-out-soft),
-              transform 0.3s var(--ease-out-soft);
+  transition: background 0.35s var(--ease-out-soft), color 0.35s var(--ease-out-soft),
+              border-color 0.35s var(--ease-out-soft), transform 0.35s var(--ease-out-soft);
 }
 
-.stories-dot:hover {
-  border-color: var(--plaster);
-}
-
-.stories-dot.active {
+.stories-arrow:hover,
+.stories-arrow:focus-visible {
   background: var(--red);
   border-color: var(--red);
-  transform: scale(1.25);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------- track */
+.stories-viewport {
+  --card-w: clamp(280px, 28vw, 400px);
+  --card-gap: clamp(1.25rem, 2.6vw, 2.6rem);
+  padding: 1.5rem var(--gutter) 2.5rem;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.stories-track {
+  list-style: none;
+  display: flex;
+  gap: var(--card-gap);
+  margin: 0;
+  padding: 0;
+  will-change: transform;
+}
+
+.story-card {
+  position: relative;
+  flex: 0 0 var(--card-w);
+  aspect-ratio: 3 / 4.1;
+}
+
+.story-card-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--night);
+  box-shadow: 0 30px 60px rgba(15, 15, 16, 0.18);
+  transform: scale(0.93);
+  opacity: 0.55;
+  filter: saturate(0.7);
+  transition: transform 1s var(--ease-expo), opacity 0.8s var(--ease-expo), filter 0.8s var(--ease-expo);
+}
+
+.story-card.is-active .story-card-inner {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+.story-card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.story-card.is-active .story-card-hit {
+  cursor: default;
+  pointer-events: none;
+}
+
+.story-card-hit:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -4px;
+}
+
+.story-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 6s var(--ease-out-soft);
+}
+
+.story-card.is-active .story-card-photo {
+  transform: scale(1);
+}
+
+.story-card-body {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.4rem 1.5rem 1.6rem;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 11, 0.42) 0%, transparent 22%),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.94) 0%, rgba(10, 10, 11, 0.78) 38%, rgba(10, 10, 11, 0.12) 68%, transparent 80%);
+}
+
+.story-card .story-card-index {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.66rem;
+}
+
+.story-card-quote {
+  margin: auto 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.18vw, 1.14rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-wrap: pretty;
+}
+
+.story-card-mark {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.4rem;
+  line-height: 0.6;
+  height: 1.6rem;
+  color: var(--red-on-dark);
+}
+
+.story-card-foot {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.story-stars {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--red-on-dark);
+}
+
+.story-card-name {
+  margin: 0.55rem 0 0.2rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.story-card .story-card-meta {
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 900px) {
+  .stories-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stories-viewport {
+    --card-w: min(78vw, 340px);
+    --card-gap: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .stories-content {
-    padding: 0 1.25rem;
-    gap: 2rem;
+  .stories-section {
+    padding: 6.5rem 0 4rem;
   }
 
-  .stories-stage {
-    padding: 2rem 1.2rem 1.8rem;
+  .stories-controls {
+    width: 100%;
   }
 
-  .stories-mark {
-    font-size: 3.4rem;
-    top: -1.5rem;
+  .stories-progress {
+    flex: 1;
+  }
+
+  .story-card-quote {
+    font-size: 0.98rem;
   }
 }

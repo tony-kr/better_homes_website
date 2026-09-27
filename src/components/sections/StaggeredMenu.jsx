@@ -64,10 +64,17 @@ export const StaggeredMenu = ({
       gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 });
       gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
       gsap.set(textInner, { yPercent: 0 });
-      if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
     });
     return () => ctx.revert();
-  }, [menuButtonColor, position]);
+  }, [position]);
+
+  // The page behind the header changes tone as you scroll; follow it while
+  // the panel is closed (the open panel sets its own colour).
+  useLayoutEffect(() => {
+    if (toggleBtnRef.current && !openRef.current) {
+      gsap.to(toggleBtnRef.current, { color: menuButtonColor, duration: 0.4, ease: 'power2.out' });
+    }
+  }, [menuButtonColor]);
 
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;

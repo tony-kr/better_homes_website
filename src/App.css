@@ -1,42 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap');
 
 /*
-  BETTER HOMES — "Blue hour" design system, brand edition
-  The site lives at dusk: deep blue-ink surfaces, bold red-and-white type
-  (brand red from betterhomesindia.in), amber kept only for the physical
-  lamplight inside the 3D house.
+  BETTER HOMES — red and white.
+
+  Type follows the client's reference (tej.as/story): Jost set heavy and
+  tight for display, Switzer for reading, Geist Mono for labels and
+  counters. The emphasised phrase in a heading is set upright in red.
+
+  Colour is paper white, near-black ink and one brand red. Photographic
+  sections (the landing, About, the walk) run white type over a neutral dark
+  scrim; red stays an accent there, never a fill behind body copy.
 */
 :root {
-  /* Palette */
-  --ink-900: #0b1118;   /* night sky, deepest */
-  --ink-800: #101823;   /* primary background */
-  --ink-700: #17212e;   /* raised panels */
-  --line: #26313f;      /* hairlines */
-  --line-bright: #3a4759;
+  /* Paper — backgrounds, lightest first */
+  --paper: #ffffff;
+  --paper-soft: #f6f5f3;
+  --paper-warm: #efedea;
+  --line: #e6e4e0;
+  --line-bright: #cfccc7;
 
-  --plaster: #f4f1ec;   /* primary text — white */
-  --stone: #93a0ae;     /* secondary text — cool stone */
-  --stone-dim: #5f6c7b;
+  /* Ink — type. Every step clears WCAG AA on --paper and --paper-soft. */
+  --ink: #0f0f10;
+  --ink-soft: #45464b;
+  --ink-dim: #66676d;
 
-  --red: #d50000;        /* brand red */
-  --red-bright: #ff3d3d;
-  --red-deep: #a30000;
+  /* Brand red, matched to the logo */
+  --red: #d7141e;
+  --red-bright: #ec2530;
+  --red-deep: #a90e16;
+  --red-wash: #fdeeee;
+  /* On dark photographs pure brand red is too dense for small type */
+  --red-on-dark: #ff4d55;
 
-  --lamp: #e8a857;       /* lamplight — the 3D house windows only */
-  --lamp-bright: #ffc97e;
+  /* Neutral night for scrims and dark surfaces */
+  --night: #0c0c0d;
 
-  /* Typography — display is the expanded cut of Archivo
-     (Syne was dropped: its lowercase g has a flat amputated descender) */
-  --font-display: 'Archivo', -apple-system, sans-serif;
-  --font-body: 'Archivo', -apple-system, sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  --display-stretch: 122%;
+  /* Legacy names from the champagne round, now pointing at red/white so
+     no component keeps a stray gold */
+  --gold: var(--red);
+  --gold-bright: #ffffff;
+  --gold-deep: var(--red-deep);
+
+  /* Typography */
+  --font-display: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
+  --font-body: 'Switzer', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display-stretch: 100%;
 
   /* Spacing */
   --spacing-unit: 8px;
+  --gutter: clamp(1.25rem, 6vw, 6.5rem);
 
-  /* Motion */
+  /* Motion: one expo-out curve for everything that settles */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 * {
@@ -48,6 +67,12 @@
 html {
   font-size: 16px;
   scroll-behavior: auto;
+}
+
+/* Nothing moves under the splash: keys, touch and the wheel are all held */
+html[data-splash='on'],
+html[data-splash='on'] body {
+  overflow: hidden;
 }
 
 /* Lenis drives the document scroll — one continuous, fluid surface */
@@ -62,8 +87,8 @@ html.lenis body {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--ink-900);
-  color: var(--plaster);
+  background-color: var(--paper);
+  color: var(--ink);
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -81,39 +106,55 @@ body {
   width: 100%;
 }
 
-/* Typography — bold white headlines with brand-red emphasis */
+/* Display type: heavy, tight Jost, after tej.as. `em` and `.accent` inside
+   a heading are the brand red, upright, in the heading's own face. */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-stretch: var(--display-stretch);
   font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: -0.02em;
-  color: var(--plaster);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 h1 em, h2 em, h3 em {
   font-style: normal;
+  color: var(--red);
+}
+
+.accent {
+  font-style: normal;
+  color: var(--red);
+}
+
+/* Over photographs the brand red is lifted a step so it holds its weight */
+.landing-section .accent,
+.hero-section .accent {
   color: var(--red-bright);
-  text-shadow: 0 0 42px rgba(213, 0, 0, 0.4);
+}
+
+/* The full stop that ends a headline, in red */
+.dot {
+  color: var(--red);
 }
 
 p {
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.65;
-  color: var(--stone);
-  letter-spacing: 0.005em;
+  color: var(--ink-soft);
+  text-wrap: pretty;
 }
 
-/* Drawing-sheet annotations (eyebrows, counters, labels) */
+/* Labels, eyebrows, counters */
 .annotation {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--stone);
+  color: var(--ink-soft);
 }
 
 .annotation .tick {
@@ -125,6 +166,32 @@ p {
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
+}
+
+/*
+  Reading sections are opaque paper sheets that scroll over the fixed house.
+  Leaving one lifts it like a curtain off the photograph or the moving model
+  behind, so nothing is ever seen through a half-faded wash. Sheets that
+  meet the photography get rounded edges and a soft shadow.
+*/
+#services,
+#portfolio,
+#stories,
+#estimate,
+#footer {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+}
+
+#services {
+  border-radius: 28px;
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.22), 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+#portfolio {
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.22);
 }
 
 section {
@@ -140,11 +207,11 @@ section {
   display: inline-flex;
   align-items: center;
   gap: calc(var(--spacing-unit) * 1.5);
-  padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+  padding: 1.05rem 1.9rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #ffffff;
   background: var(--red);
@@ -164,7 +231,7 @@ section {
 .btn-primary:focus-visible {
   background: var(--red-bright);
   border-color: var(--red-bright);
-  box-shadow: 0 0 36px rgba(213, 0, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(215, 20, 30, 0.28);
   transform: translateY(-2px);
 }
 
@@ -182,11 +249,11 @@ section {
   align-items: center;
   gap: 10px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--stone);
+  color: var(--ink);
   background: none;
   border: none;
   cursor: pointer;
@@ -196,7 +263,7 @@ section {
 }
 
 .btn-ghost:hover {
-  color: var(--red-bright);
+  color: var(--red);
 }
 
 :focus-visible {
@@ -216,12 +283,14 @@ section {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.2em;
-  color: var(--stone);
+  color: var(--ink-soft);
   pointer-events: none;
+  mix-blend-mode: multiply;
 }
 
 .sheet-indicator .sheet-current {
-  color: var(--plaster);
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .sheet-indicator .sheet-rule {
@@ -242,31 +311,22 @@ section {
   transition: transform 0.8s var(--ease-out-soft);
 }
 
-/* On the light, image-tinted Spaces section */
-.sheet-indicator.on-light {
-  color: rgba(20, 18, 16, 0.55);
-  transition: color 0.6s ease;
+/* Over the photographic sections the counter reads light */
+body[data-tone='dark'] .sheet-indicator {
+  color: rgba(255, 255, 255, 0.7);
+  mix-blend-mode: normal;
 }
 
-.sheet-indicator.on-light .sheet-current {
-  color: rgba(20, 18, 16, 0.9);
+body[data-tone='dark'] .sheet-indicator .sheet-current {
+  color: #fff;
 }
 
-.sheet-indicator.on-light .sheet-rule {
-  background: rgba(20, 18, 16, 0.25);
+body[data-tone='dark'] .sheet-indicator .sheet-rule {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* Grain texture overlay */
-.grain-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.04;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+body[data-tone='dark'] .sheet-indicator .sheet-rule::after {
+  background: var(--red-on-dark);
 }
 
 /* Hide the scrollbar — Lenis makes the motion, the sheet indicator shows depth */
@@ -293,5 +353,82 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------ motion kit */
+/* <MaskReveal>: words rise out of a mask, staggered (components/motion.jsx) */
+.mask-reveal .mr-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for descenders inside the mask */
+  padding: 0 0.04em 0.12em;
+  margin: 0 -0.04em -0.12em;
+}
+
+.mask-reveal .mr-inner {
+  display: inline-block;
+  transform: translateY(112%);
+  transition: transform 1.05s var(--ease-expo);
+  transition-delay: calc(var(--mr-delay, 0s) + var(--i, 0) * var(--mr-stagger, 0.055s));
+  will-change: transform;
+}
+
+.mask-reveal.is-in .mr-inner {
+  transform: translateY(0);
+}
+
+.mask-reveal.is-done .mr-word {
+  overflow: visible;
+}
+
+/* <ImageReveal> */
+.image-reveal {
+  overflow: hidden;
+}
+
+.image-reveal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* <RotatingWord> */
+.rotating-word {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  /* room for descenders inside the mask */
+  padding: 0 0.08em 0.14em 0;
+  margin-bottom: -0.14em;
+}
+
+.rw-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rw-char {
+  display: inline-block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mask-reveal .mr-inner {
+    transform: none;
   }
 }

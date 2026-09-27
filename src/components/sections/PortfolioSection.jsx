@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { featuredPhoto } from '../../data/projectPhotos';
+import { EASE, MaskReveal } from '../motion';
 import './PortfolioSection.css';
+import { sheetNumber } from '../../data/journey';
+
+const sheet = sheetNumber('portfolio');
 
 // Featured projects — real names, areas, neighbourhoods, shot on site
 const projects = [
@@ -75,8 +79,12 @@ const PortfolioSection = () => {
             animate={hasEntered ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            05 <span className="tick">/</span> 08 — Featured projects
+            {sheet.n} <span className="tick">/</span> {sheet.total} — Featured projects
           </motion.p>
+
+          <MaskReveal className="portfolio-title">
+            Homes we have <span className="accent">handed over</span><span className="dot">.</span>
+          </MaskReveal>
 
           <ul className="portfolio-list">
             {projects.map((p, i) => (
@@ -110,7 +118,7 @@ const PortfolioSection = () => {
             animate={hasEntered ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            05 featured works, across Bangalore <span className="tick">/</span>{' '}
+            05 featured works, across Bengaluru <span className="tick">/</span>{' '}
             <a href="#/gallery" className="portfolio-gallery-link">see the full gallery →</a>
           </motion.p>
         </div>
@@ -120,12 +128,19 @@ const PortfolioSection = () => {
             <motion.figure
               key={active.id}
               className="portfolio-figure"
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+              animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+              exit={{ clipPath: 'inset(0% 0% 100% 0%)', transition: { duration: 0.45, ease: [0.5, 0, 0.75, 0] } }}
+              transition={{ duration: 0.8, ease: EASE }}
             >
-              <img src={active.image} alt={active.name} draggable={false} />
+              <motion.img
+                src={active.image}
+                alt={active.name}
+                draggable={false}
+                initial={{ scale: 1.12 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.2, ease: EASE }}
+              />
               <figcaption className="annotation portfolio-caption">
                 {active.location} — {active.area}
               </figcaption>

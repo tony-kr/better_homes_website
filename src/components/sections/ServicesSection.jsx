@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { MaskReveal, rise } from '../motion';
 import './ServicesSection.css';
+import { sheetNumber } from '../../data/journey';
+
+const sheet = sheetNumber('services');
 
 // Full service list from betterhomesindia.in
 const services = [
@@ -38,69 +41,38 @@ const services = [
   }
 ];
 
-const ServicesSection = ({ onNavigate }) => {
-  const sectionRef = useRef(null);
-  const [hasEntered, setHasEntered] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setHasEntered(true);
-      },
-      { threshold: 0.3 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section ref={sectionRef} className="services-section">
-      <div className="services-content">
-        <motion.div
-          className="services-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={hasEntered ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="annotation services-eyebrow">
-            03 <span className="tick">/</span> 08 — Services
-          </p>
-          <h2 className="services-title">
-            Everything a home needs, <em>under one roof</em>.
-          </h2>
-        </motion.div>
-
-        <div className="services-grid">
-          {services.map((s, i) => (
-            <motion.article
-              className="service-card"
-              key={s.title}
-              initial={{ opacity: 0, y: 28 }}
-              animate={hasEntered ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.25 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="annotation service-index">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="service-name">{s.title}</h3>
-              <p className="service-description">{s.description}</p>
-            </motion.article>
-          ))}
-        </div>
-
-        <motion.div
-          className="services-cta"
-          initial={{ opacity: 0 }}
-          animate={hasEntered ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 1.0 }}
-        >
-          <button className="btn-ghost" onClick={() => onNavigate?.('estimate')}>
-            Get a free estimate <span className="arrow">→</span>
+const ServicesSection = ({ onNavigate }) => (
+  <section className="services-section">
+    <div className="services-content">
+      <div className="services-header">
+        <motion.p className="annotation services-eyebrow" {...rise(0)}>
+          {sheet.n} <span className="tick">/</span> {sheet.total} — Services
+        </motion.p>
+        <MaskReveal className="services-title">
+          Everything a home needs, <span className="accent">under one roof</span><span className="dot">.</span>
+        </MaskReveal>
+        <motion.p className="services-lede" {...rise(0.2)}>
+          One team from the first measurement to the last cushion: design,
+          joinery, lighting and finishing, managed end to end.
+        </motion.p>
+        <motion.div {...rise(0.3)}>
+          <button className="btn-primary" onClick={() => onNavigate?.('estimate')}>
+            Get a free estimate <span className="arrow" aria-hidden="true">→</span>
           </button>
         </motion.div>
       </div>
-    </section>
-  );
-};
+
+      <ol className="services-list">
+        {services.map((s, i) => (
+          <motion.li className="service-row" key={s.title} {...rise(0.05 + i * 0.05, 16)}>
+            <span className="annotation service-index">{String(i + 1).padStart(2, '0')}</span>
+            <h3 className="service-name">{s.title}</h3>
+            <p className="service-description">{s.description}</p>
+          </motion.li>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
 export default ServicesSection;

@@ -1,6 +1,22 @@
 /*
   Gallery page — a long, freely scrolling sheet of the client's real work.
 */
+/* The walk shows through at the very top, then the page settles onto a solid
+   ground so the photography is judged on its own. */
+.gallery-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.86) 0%,
+    rgba(255, 255, 255, 0.97) 30%,
+    var(--paper) 52%
+  );
+}
+
 .gallery-page {
   position: relative;
   z-index: 1;
@@ -39,60 +55,157 @@
   font-size: 0.98rem;
 }
 
-/* Filters */
-.gallery-page-filters {
+/* Tabs — three sections, one underline that slides between them */
+.gallery-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 2.6rem 0 2.2rem;
+  gap: 2rem;
+  margin: 2.6rem 0 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.gallery-page-filter {
+.gallery-tab {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0 0 0.9rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink-dim);
+  transition: color 0.3s var(--ease-out-soft);
+}
+
+.gallery-tab:hover {
+  color: var(--ink);
+}
+
+.gallery-tab.active {
+  color: var(--red);
+}
+
+.gallery-tab-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--red);
+}
+
+/* Deep-linked room chip */
+.gallery-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  margin: 1.6rem 0 0;
+}
+
+.gallery-page .gallery-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.55rem 1.1rem;
-  cursor: pointer;
-  color: var(--stone);
-  transition: color 0.3s var(--ease-out-soft),
-              border-color 0.3s var(--ease-out-soft),
-              background 0.3s var(--ease-out-soft);
-}
-
-.gallery-page-filter .filter-count {
-  font-size: 0.58rem;
-  color: var(--stone-dim);
-  letter-spacing: 0.08em;
-}
-
-.gallery-page-filter:hover {
-  color: var(--plaster);
-  border-color: var(--line-bright);
-}
-
-.gallery-page-filter.active {
+  gap: 0.6rem;
+  padding: 0.45rem 0.5rem 0.45rem 0.95rem;
+  font-size: 0.62rem;
+  font-weight: 700;
   color: #ffffff;
   background: var(--red);
-  border-color: var(--red);
+  border-radius: 999px;
 }
 
-.gallery-page-filter.active .filter-count {
-  color: rgba(255, 255, 255, 0.75);
+.gallery-chip-count {
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.gallery-chip-clear {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--red);
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out-soft);
+}
+
+.gallery-chip-clear:hover {
+  transform: rotate(90deg);
+}
+
+.gallery-page .gallery-chip-note {
+  font-size: 0.58rem;
+  color: var(--ink-dim);
+}
+
+.gallery-panel {
+  margin-top: 2.6rem;
+}
+
+/* Holding state for a tab whose assets are still being produced */
+.gallery-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  max-width: 62ch;
+  padding: 3.4rem 3rem;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+}
+
+.gallery-empty-rule {
+  width: 54px;
+  height: 3px;
+  background: var(--red);
+}
+
+.gallery-empty-title {
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  color: var(--ink);
+}
+
+.gallery-empty-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.gallery-empty-cta {
+  margin-top: 0.6rem;
+}
+
+/* Before / after pairs */
+.gallery-ba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 2rem;
 }
 
 /* Masonry-ish grid — CSS columns keep each photo's own aspect */
 .gallery-page-grid {
   columns: 3 320px;
   column-gap: 1.4rem;
+  margin-top: 2.6rem;
+}
+
+/* Inside a tab panel the panel already carries the gap */
+.gallery-panel .gallery-page-grid {
+  margin-top: 0;
 }
 
 .gallery-page-card {
   break-inside: avoid;
   margin: 0 0 1.4rem;
-  background: var(--ink-700);
+  background: var(--paper-warm);
   border: 1px solid var(--line);
   overflow: hidden;
 }
@@ -141,7 +254,7 @@
     padding: 5.5rem 1.25rem 5rem;
   }
 
-  .gallery-page-filters {
+  .gallery-tabs {
     margin: 1.8rem 0 1.4rem;
     gap: 0.45rem;
   }
@@ -162,5 +275,40 @@
   .gallery-page-caption {
     padding: 0.5rem 0.6rem;
     font-size: 0.52rem;
+  }
+}
+
+/* Inline "see everything" reset, shown when a room stop pre-filtered the page */
+.gallery-clear {
+  font: inherit;
+  color: var(--red-bright);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.gallery-clear:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .gallery-tabs {
+    gap: 1.2rem;
+  }
+
+  .gallery-tab {
+    font-size: 0.98rem;
+  }
+
+  .gallery-empty {
+    padding: 2rem 1.3rem;
+  }
+
+  .gallery-ba-grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
   }
 }

@@ -1,0 +1,13 @@
+{
+  "meshAndCurveObjects": 1848,
+  "evaluatedTriangles": 353156,
+  "budgetTriangles": 450000,
+  "triangleBudgetPassed": true,
+  "meshesWithoutUV": [],
+  "pbrMapCount": 18,
+  "routeFailures": [],
+  "notes": [
+    "Conservative furniture boxes can reject a physically feasible route.",
+    "This check does not replace visual review, full object-to-object BVH clearance, or browser verification."
+  ]
+}

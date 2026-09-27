@@ -1,82 +1,84 @@
-import React, { useEffect, useState } from "react";
-import { useLoading } from "../../context/LoadingContext";
-import "./Loading.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { useLoading } from '../../context/LoadingContext';
+import './Loading.css';
 
-const Loading = ({ percent }) => {
+/*
+  Splash screen.
+
+  The number on screen never jumps. `percent` is what the loaders report,
+  and it can arrive as 100 at once when the house is already cached; the
+  display counts up toward it at a steady pace instead, so the splash always
+  reads as a short, deliberate count rather than a flash of "100%".
+
+  When the count lands and the hero image is decoded, the panel lifts away
+  like a curtain to reveal the landing plate underneath. No colour floods the
+  screen on the way out.
+*/
+const MIN_SHOW_MS = 1600;   // never shorter than this, cached or not
+const RATE = 62;            // display percent per second, at most
+
+const Loading = ({ percent, ready = true }) => {
   const { setIsLoading } = useLoading();
-  const [loaded, setLoaded] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [shown, setShown] = useState(0);
+  const [leaving, setLeaving] = useState(false);
+  const target = useRef(0);
+  const start = useRef(performance.now());
+
+  target.current = percent;
+
+  // Count toward the reported value, capped per frame, never backwards.
+  useEffect(() => {
+    let raf;
+    let last = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      // Hold short of 100 until the minimum time has passed
+      const elapsed = now - start.current;
+      const cap = elapsed < MIN_SHOW_MS ? Math.min(96, (elapsed / MIN_SHOW_MS) * 100) : 100;
+      setShown((s) => {
+        const goal = Math.min(target.current, cap);
+        return s >= goal ? s : Math.min(goal, s + RATE * dt);
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const done = shown >= 100 && ready;
 
   useEffect(() => {
-    if (percent >= 100 && !loaded) {
-      const timer1 = setTimeout(() => {
-        setLoaded(true);
-        const timer2 = setTimeout(() => {
-          setIsLoaded(true);
-        }, 1000);
-        return () => clearTimeout(timer2);
-      }, 600);
-      return () => clearTimeout(timer1);
-    }
-  }, [percent, loaded]);
+    if (!done || leaving) return;
+    const lift = setTimeout(() => setLeaving(true), 350);
+    return () => clearTimeout(lift);
+  }, [done, leaving]);
 
   useEffect(() => {
-    if (isLoaded) {
-      setClicked(true);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 900);
-      return () => clearTimeout(timer);
-    }
-  }, [isLoaded, setIsLoading]);
+    if (!leaving) return;
+    const gone = setTimeout(() => setIsLoading(false), 1150);
+    return () => clearTimeout(gone);
+  }, [leaving, setIsLoading]);
 
-  const handleMouseMove = (e) => {
-    const target = e.currentTarget;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  };
+  const value = Math.floor(shown);
 
   return (
-    <div className="loading-master-container">
-      <div className="loading-header">
-        <a href="/#" className="loader-title">Better Homes</a>
-        <div className={`loaderGame ${clicked ? "loader-out" : ""}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
-          </div>
-        </div>
+    <div className={`splash ${leaving ? 'splash-leaving' : ''}`} role="status" aria-live="polite">
+      <div className="splash-inner">
+        <img className="splash-logo" src="/bh-logo.png" alt="Better Homes" />
       </div>
-      <div className="loading-screen">
-        <div className="loading-title-text">BETTER</div>
-        <div
-          className={`loading-wrap ${clicked ? "loading-clicked" : ""}`}
-          onMouseMove={handleMouseMove}
-        >
-          <div className="loading-hover"></div>
-          <div className={`loading-button ${loaded ? "loading-complete" : ""}`}>
-            <div className="loading-container">
-              <div className="loading-content">
-                <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
-                </div>
-              </div>
-              <div className="loading-box"></div>
-            </div>
-            <div className="loading-content2">
-              <span>Welcome</span>
-            </div>
-          </div>
-        </div>
-        <div className="loading-title-text">HOMES</div>
+
+      <div className="splash-foot">
+        <span className="splash-count" aria-label={`Loading ${value} percent`}>
+          {value}
+          <span className="splash-pct">%</span>
+        </span>
+        <span className="splash-caption">
+          Interior design <span className="splash-dot" aria-hidden="true" /> Bengaluru
+        </span>
+      </div>
+      <div className="splash-bar" aria-hidden="true">
+        <span style={{ transform: `scaleX(${shown / 100})` }} />
       </div>
     </div>
   );

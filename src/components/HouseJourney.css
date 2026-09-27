@@ -1,0 +1,281 @@
+/*
+  The house sits behind the whole page.
+
+  The landing and the walk run cinematic: white and champagne type over a
+  warm dark gradient anchored low-left, with the image itself left vivid.
+  The reading sections (services, portfolio, stories, estimate) run on paper,
+  with the house as a faint backdrop.
+*/
+.journey-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #1b1d28;
+}
+
+.journey-canvas canvas {
+  position: relative;
+  z-index: 2;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out-soft);
+}
+
+.journey-canvas[data-ready='true'] canvas {
+  opacity: 1;
+}
+
+.journey-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: saturate(0.9);
+}
+
+/* -------------------------------------------------------- hero backdrop */
+/* The golden-hour render the landing opens on. Opacity and the slow
+   push-in are driven from scroll in HouseJourney.jsx. */
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  background: #2a2230;
+  transform-origin: 50% 62%;
+  will-change: opacity, transform;
+}
+
+.hero-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+  display: block;
+  transform: scale(1.07);
+  transform-origin: 50% 62%;
+}
+
+/* Settles in as the splash lifts */
+html[data-splash='off'] .hero-backdrop img {
+  animation: hero-settle 3.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes hero-settle {
+  from { transform: scale(1.07); }
+  to { transform: scale(1); }
+}
+
+.hero-backdrop[data-hidden='true'] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-splash='off'] .hero-backdrop img {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------- scrims */
+/* Four washes, each faded by a --w-* weight that HouseJourney.jsx blends
+   with scroll. Only the layer's opacity changes, so nothing repaints. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Reading sections: the house becomes a faint backdrop */
+.scrim-paper {
+  background: rgba(255, 255, 255, 0.985);
+  opacity: var(--w-paper, 0);
+}
+
+/* The walk: a neutral dark falloff behind the copy on the left; the room
+   itself stays at full strength */
+.scrim-room {
+  opacity: var(--w-room, 0);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 10, 11, 0.82) 0%,
+      rgba(10, 10, 11, 0.62) 24%,
+      rgba(10, 10, 11, 0.26) 42%,
+      rgba(10, 10, 11, 0.04) 56%,
+      transparent 66%
+    ),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.4) 0%, transparent 26%);
+}
+
+/* Landing: only the lower left darkens, under the type and the fact bar */
+.scrim-landing {
+  opacity: var(--w-landing, 1);
+  background:
+    linear-gradient(
+      78deg,
+      rgba(10, 10, 11, 0.7) 0%,
+      rgba(10, 10, 11, 0.42) 26%,
+      rgba(10, 10, 11, 0.1) 46%,
+      transparent 62%
+    ),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.72) 0%, rgba(10, 10, 11, 0.3) 22%, transparent 48%);
+}
+
+/* About carries copy on both sides, so the whole frame dims */
+.scrim-about {
+  opacity: var(--w-about, 0);
+  background:
+    linear-gradient(90deg, rgba(10, 10, 11, 0.78) 0%, rgba(10, 10, 11, 0.56) 38%, rgba(10, 10, 11, 0.46) 64%, rgba(10, 10, 11, 0.56) 100%),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.5) 0%, transparent 45%);
+}
+
+/* The gallery is its own page over a still house */
+.journey-canvas[data-section='gallery'] .scrim-paper {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.journey-canvas[data-section='gallery'] .scrim:not(.scrim-paper) {
+  opacity: 0;
+}
+
+/* -------------------------------------------------------------- mobile */
+@media (max-width: 900px) {
+  /* Phones and small tablets: copy sits at the foot of the frame, so the
+     darkening runs up from the bottom and the top of the image stays clear */
+  .scrim-room {
+    background: linear-gradient(
+      0deg,
+      rgba(10, 10, 11, 0.92) 0%,
+      rgba(10, 10, 11, 0.8) 42%,
+      rgba(10, 10, 11, 0.42) 64%,
+      transparent 84%
+    );
+  }
+
+  .scrim-landing {
+    background: linear-gradient(
+      0deg,
+      rgba(10, 10, 11, 0.88) 0%,
+      rgba(10, 10, 11, 0.62) 32%,
+      rgba(10, 10, 11, 0.12) 56%,
+      transparent 70%
+    );
+  }
+
+  .scrim-about {
+    background: rgba(10, 10, 11, 0.74);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-splash='off'] .hero-backdrop img {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------- scrims */
+/* Four washes, each faded by a --w-* weight that HouseJourney.jsx blends
+   with scroll. Only the layer's opacity changes, so nothing repaints. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Reading sections: the house becomes a faint backdrop */
+.scrim-paper {
+  background: rgba(255, 255, 255, 0.985);
+  opacity: var(--w-paper, 0);
+}
+
+/* The walk: a neutral dark falloff behind the copy on the left; the room
+   itself stays at full strength */
+.scrim-room {
+  opacity: var(--w-room, 0);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 10, 11, 0.82) 0%,
+      rgba(10, 10, 11, 0.62) 24%,
+      rgba(10, 10, 11, 0.26) 42%,
+      rgba(10, 10, 11, 0.04) 56%,
+      transparent 66%
+    ),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.4) 0%, transparent 26%);
+}
+
+/* Landing: only the lower left darkens, under the type and the fact bar */
+.scrim-landing {
+  opacity: var(--w-landing, 1);
+  background:
+    linear-gradient(
+      78deg,
+      rgba(10, 10, 11, 0.7) 0%,
+      rgba(10, 10, 11, 0.42) 26%,
+      rgba(10, 10, 11, 0.1) 46%,
+      transparent 62%
+    ),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.72) 0%, rgba(10, 10, 11, 0.3) 22%, transparent 48%);
+}
+
+/* About carries copy on both sides, so the whole frame dims */
+.scrim-about {
+  opacity: var(--w-about, 0);
+  background:
+    linear-gradient(90deg, rgba(10, 10, 11, 0.78) 0%, rgba(10, 10, 11, 0.56) 38%, rgba(10, 10, 11, 0.46) 64%, rgba(10, 10, 11, 0.56) 100%),
+    linear-gradient(0deg, rgba(10, 10, 11, 0.5) 0%, transparent 45%);
+}
+
+/* The gallery is its own page over a still house */
+.journey-canvas[data-section='gallery'] .scrim-paper {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.journey-canvas[data-section='gallery'] .scrim:not(.scrim-paper) {
+  opacity: 0;
+}
+
+/* -------------------------------------------------------------- mobile */
+@media (max-width: 900px) {
+  /* Phones and small tablets: copy sits at the foot of the frame, so the
+     darkening runs up from the bottom and the top of the image stays clear */
+  .scrim-room {
+    background: linear-gradient(
+      0deg,
+      rgba(10, 10, 11, 0.92) 0%,
+      rgba(10, 10, 11, 0.8) 42%,
+      rgba(10, 10, 11, 0.42) 64%,
+      transparent 84%
+    );
+  }
+
+  .scrim-landing {
+    background: linear-gradient(
+      0deg,
+      rgba(10, 10, 11, 0.88) 0%,
+      rgba(10, 10, 11, 0.62) 32%,
+      rgba(10, 10, 11, 0.12) 56%,
+      transparent 70%
+    );
+  }
+
+  .scrim-about {
+    background: rgba(10, 10, 11, 0.74);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-canvas canvas {
+    transition: none;
+  }
+}

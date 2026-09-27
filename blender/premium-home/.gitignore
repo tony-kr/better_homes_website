@@ -1,0 +1,7 @@
+__pycache__/
+*.blend1
+*.blend2
+
+# Regenerable bake intermediates (export_web.py); the shipped model is public/models/premium-home.glb
+runtime/web-bake.blend
+runtime/premium-home.glb

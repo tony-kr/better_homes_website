@@ -1,154 +1,147 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { WhatsAppIcon, PhoneIcon, MailIcon, PinIcon } from '../icons';
+import {
+  ESTIMATE_LINK,
+  PHONE_NUMBER,
+  PHONE_DISPLAY,
+  WHATSAPP_DISPLAY,
+  EMAIL,
+  STUDIO_ADDRESS,
+  STUDIO_HOURS
+} from '../../data/contact';
+import { MaskReveal } from '../motion';
 import './EstimateSection.css';
+import { sheetNumber } from '../../data/journey';
 
-const projectTypes = [
-  'Full Home Interior',
-  'Kitchen Only',
-  'Living Room',
-  'Bedroom',
-  'Bathroom',
-  'Other'
+const sheet = sheetNumber('estimate');
+
+/*
+  Free estimate — no form. One button opens WhatsApp with the enquiry already
+  written out, so the conversation starts where the studio actually answers.
+*/
+const steps = [
+  {
+    n: '01',
+    title: 'Send the message',
+    body: 'The button drafts it for you — fill in the blanks and hit send.'
+  },
+  {
+    n: '02',
+    title: 'We call you back',
+    body: 'A designer calls within a day to understand the home and the budget.'
+  },
+  {
+    n: '03',
+    title: 'You get the estimate',
+    body: 'A written scope and price, with no obligation and no site-visit fee.'
+  }
 ];
 
 const EstimateSection = () => {
   const sectionRef = useRef(null);
   const [hasEntered, setHasEntered] = useState(false);
-  const [sent, setSent] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setHasEntered(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // The enquiry goes straight to the studio's WhatsApp, fully drafted
-  const WHATSAPP_NUMBER = '918287633479';
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const message = data.get('message')?.trim();
-    const lines = [
-      'Hello Better Homes!',
-      'I would like a *free estimate* for my home. Here are my details:',
-      '',
-      `*Name:* ${data.get('name')}`,
-      `*Mobile:* ${data.get('mobile')}`,
-      `*Email:* ${data.get('email')}`,
-      `*Project type:* ${data.get('projectType')}`,
-      ...(message ? ['', `*About the space:* ${message}`] : []),
-      '',
-      'Please get back to me with the scope and estimate. Thank you!'
-    ];
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`,
-      '_blank',
-      'noopener'
-    );
-    setSent(true);
-  };
+  const rise = (delay = 0) => ({
+    initial: { opacity: 0, y: 34 },
+    animate: hasEntered ? { opacity: 1, y: 0 } : {},
+    transition: { duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }
+  });
 
   return (
     <section ref={sectionRef} className="estimate-section">
       <div className="estimate-content">
-
-        <motion.div
-          className="estimate-intro"
-          initial={{ opacity: 0, y: 40 }}
-          animate={hasEntered ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <motion.div className="estimate-intro" {...rise(0)}>
           <p className="annotation estimate-eyebrow">
-            07 <span className="tick">/</span> 08 — Free estimate
+            {sheet.n} <span className="tick">/</span> {sheet.total} — Free estimate
           </p>
-          <h2 className="estimate-title">
-            Tell us about the home. <em>The estimate is on us.</em>
-          </h2>
+          <MaskReveal className="estimate-title">
+            Tell us about the home. <span className="accent">The estimate is on us</span><span className="dot">.</span>
+          </MaskReveal>
           <p className="estimate-lede">
-            Share a few details and our design team will come back with a
-            scope and estimate — no obligation, no site-visit fee.
+            No forms, no waiting on an email. Tap below and WhatsApp opens with
+            the enquiry already written — you only fill in the blanks.
           </p>
-
-          <ul className="estimate-details">
-            <li>
-              <span className="annotation">Call</span>
-              <a href="tel:+919876543210">+91 98765 43210</a>
-            </li>
-            <li>
-              <span className="annotation">WhatsApp</span>
-              <a href="https://wa.me/918287633479" target="_blank" rel="noreferrer">+91 82876 33479</a>
-            </li>
-            <li>
-              <span className="annotation">Write</span>
-              <a href="mailto:hello@betterhomes.in">hello@betterhomes.in</a>
-            </li>
-            <li>
-              <span className="annotation">Visit</span>
-              <span>170 2nd Block, Banashankari 6th Stage 1st Block, Channasandra, Bengaluru — Mon–Sat, 10AM–7PM</span>
-            </li>
-          </ul>
         </motion.div>
 
-        <motion.form
-          className="estimate-form"
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 40 }}
-          animate={hasEntered ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="form-row">
-            <label className="form-field">
-              <span className="annotation">Full name</span>
-              <input type="text" name="name" required autoComplete="name" placeholder="Your name" />
-            </label>
-            <label className="form-field">
-              <span className="annotation">Mobile number</span>
-              <input type="tel" name="mobile" required autoComplete="tel" placeholder="+91" />
-            </label>
-          </div>
+        <motion.div className="estimate-action" {...rise(0.12)}>
+          <a
+            className="btn-whatsapp"
+            href={ESTIMATE_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <WhatsAppIcon size={22} />
+            <span>Get my free estimate on WhatsApp</span>
+            <span className="arrow">→</span>
+          </a>
+          <p className="annotation estimate-reassure">
+            Replies within a day <span className="tick">·</span> {STUDIO_HOURS}
+          </p>
+        </motion.div>
 
-          <div className="form-row">
-            <label className="form-field">
-              <span className="annotation">Email address</span>
-              <input type="email" name="email" required autoComplete="email" placeholder="you@example.com" />
-            </label>
-            <label className="form-field">
-              <span className="annotation">Project type</span>
-              <select name="projectType" required defaultValue="Full Home Interior">
-                {projectTypes.map((t) => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
-            </label>
-          </div>
+        <motion.ol className="estimate-steps" {...rise(0.2)}>
+          {steps.map((s, i) => (
+            <motion.li
+              className="estimate-step"
+              key={s.n}
+              initial={{ opacity: 0, y: 26 }}
+              animate={hasEntered ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="annotation estimate-step-n">{s.n}</span>
+              <h3 className="estimate-step-title">{s.title}</h3>
+              <p className="estimate-step-body">{s.body}</p>
+            </motion.li>
+          ))}
+        </motion.ol>
 
-          <label className="form-field">
-            <span className="annotation">Message</span>
-            <textarea
-              name="message"
-              rows={3}
-              placeholder="Tell us about the space — size, rooms, when you'd like to start…"
-            />
-          </label>
-
-          <div className="estimate-submit">
-            <button type="submit" className="btn-primary">
-              Get free estimate <span className="arrow">→</span>
-            </button>
-            {sent && (
-              <span className="annotation estimate-sent">
-                Opening WhatsApp — we reply within a day
-              </span>
-            )}
-          </div>
-        </motion.form>
-
+        <motion.ul className="estimate-details" {...rise(0.36)}>
+          <li>
+            <span className="annotation">Call</span>
+            <a className="contact-link" href={`tel:${PHONE_NUMBER}`}>
+              <PhoneIcon size={15} />
+              {PHONE_DISPLAY}
+            </a>
+          </li>
+          <li>
+            <span className="annotation">WhatsApp</span>
+            <a
+              className="contact-link is-whatsapp"
+              href={ESTIMATE_LINK}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <WhatsAppIcon size={17} />
+              {WHATSAPP_DISPLAY}
+            </a>
+          </li>
+          <li>
+            <span className="annotation">Write</span>
+            <a className="contact-link" href={`mailto:${EMAIL}`}>
+              <MailIcon size={15} />
+              {EMAIL}
+            </a>
+          </li>
+          <li>
+            <span className="annotation">Visit</span>
+            <span className="contact-link is-static">
+              <PinIcon size={15} />
+              {STUDIO_ADDRESS}
+            </span>
+          </li>
+        </motion.ul>
       </div>
     </section>
   );

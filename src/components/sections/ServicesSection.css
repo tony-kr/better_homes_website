@@ -1,137 +1,142 @@
 /*
-  Services — eight disciplines on drawing-sheet cards.
-  Dark section; the 3D house holds a distant elevation behind it.
+  Services: an editorial index, after the contents list on tej.as. The
+  heading holds the left column; eight ruled rows run down the right, and a
+  red rule sweeps in under the row you point at. Sits on the paper wash.
 */
 .services-section {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
+  padding: 7rem 0 5rem;
 }
 
 .services-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1280px;
-  padding: 0 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
+  max-width: 1320px;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
 }
 
 .services-header {
+  position: sticky;
+  top: 7rem;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  align-items: flex-start;
+  gap: 1.4rem;
 }
 
 .services-title {
-  font-size: clamp(1.9rem, 3.6vw, 3.1rem);
-  max-width: 22ch;
+  font-size: clamp(2.3rem, 4.2vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  max-width: 13ch;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+
+.services-lede {
+  max-width: 40ch;
+  font-size: 1.02rem;
 }
 
-.service-card {
+.services-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-bright);
+}
+
+.service-row {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  padding: 1.5rem 1.4rem 1.7rem;
-  background: rgba(16, 24, 35, 0.86);
-  transition: background 0.45s var(--ease-out-soft);
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  grid-template-areas:
+    'index name'
+    'index desc';
+  column-gap: 1rem;
+  row-gap: 0.35rem;
+  padding: 1.25rem 0 1.3rem;
+  border-bottom: 1px solid var(--line);
+  cursor: default;
 }
 
-.service-card::after {
+.service-row::after {
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  width: 100%;
+  bottom: -1px;
   height: 2px;
+  width: 100%;
   background: var(--red);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.45s var(--ease-out-soft);
+  transition: transform 0.6s var(--ease-expo);
 }
 
-.service-card:hover {
-  background: rgba(23, 33, 46, 0.94);
-}
-
-.service-card:hover::after {
+.service-row:hover::after {
   transform: scaleX(1);
 }
 
 .services-section .service-index {
-  font-size: 0.66rem;
-  color: var(--stone-dim);
+  grid-area: index;
+  padding-top: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  transition: color 0.35s var(--ease-out-soft);
 }
 
-.service-card:hover .service-index {
-  color: var(--red-bright);
+.service-row:hover .service-index {
+  color: var(--red);
 }
 
 .service-name {
-  font-size: 1.02rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  grid-area: name;
+  font-size: clamp(1.3rem, 1.9vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.service-row:hover .service-name {
+  transform: translateX(6px);
 }
 
 .service-description {
-  font-size: 0.84rem;
+  grid-area: desc;
+  font-size: 0.95rem;
   line-height: 1.55;
-}
-
-.services-cta {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.services-cta .arrow {
-  color: var(--red-bright);
+  max-width: 52ch;
 }
 
 @media (max-width: 1024px) {
   .services-content {
-    padding: 0 2.5rem;
+    grid-template-columns: 1fr;
   }
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .service-card {
-    padding: 1.1rem 1.1rem 1.2rem;
+
+  .services-header {
+    position: static;
   }
 }
 
 @media (max-width: 768px) {
-  .services-content {
-    padding: 0 1.25rem;
-    gap: 1.4rem;
+  .services-section {
+    padding: 6.5rem 0 4rem;
   }
-  .service-description {
-    font-size: 0.76rem;
-  }
-  .service-name {
-    font-size: 0.92rem;
-  }
-  .services-cta {
-    justify-content: flex-start;
-  }
-}
 
-@media (max-width: 480px) {
-  .service-description {
-    display: none; /* keep all eight cards inside one viewport on phones */
+  .service-row {
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    padding: 1rem 0 1.05rem;
   }
-  .service-card {
-    padding: 0.85rem 0.9rem;
+
+  .service-description {
+    font-size: 0.9rem;
   }
 }

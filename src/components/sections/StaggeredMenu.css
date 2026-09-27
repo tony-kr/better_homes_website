@@ -40,11 +40,15 @@
   align-items: center;
   user-select: none;
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 8px 16px;
   margin: -8px 0 0 -14px;
   border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
+  /* The header floats over photographs; the red mark needs its own ground */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 252, 247, 0.96);
+  box-shadow: 0 8px 24px rgba(10, 6, 4, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -52,8 +56,8 @@
 /* Scrolled past the landing: the logo becomes a compact chip on its own
    backdrop, so it floats over content instead of crashing into it */
 .sm-logo--scrolled {
-  background: rgba(11, 17, 24, 0.6);
-  border-color: rgba(244, 241, 236, 0.1);
+  background: rgba(255, 252, 247, 0.96);
+  border-color: rgba(20, 23, 27, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -78,7 +82,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #e9e9ef;
+  color: var(--ink, #14171b);
   font-weight: 500;
   line-height: 1;
   overflow: visible;
@@ -155,7 +159,7 @@
   right: 0;
   width: clamp(260px, 38vw, 420px);
   height: 100%;
-  background: #ede7dc;
+  background: #ffffff;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
@@ -217,7 +221,7 @@
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--sm-accent, #c77e33);
+  color: var(--ink-dim, #949ca5);
 }
 
 .sm-socials-list {
@@ -259,7 +263,7 @@
 .sm-socials-link {
   font-size: 1rem;
   font-weight: 500;
-  color: #101823;
+  color: var(--red, #d50000);
   text-decoration: none;
   position: relative;
   padding: 2px 0;
@@ -270,14 +274,14 @@
 }
 
 .sm-socials-link:hover {
-  color: var(--sm-accent, #ff0000);
+  color: var(--ink, #14171b);
 }
 
 .sm-panel-title {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink, #14171b);
   text-transform: uppercase;
 }
 
@@ -294,7 +298,7 @@
   position: relative;
   font-family: var(--font-display, sans-serif);
   font-stretch: var(--display-stretch, 122%);
-  color: #101823;
+  color: var(--red, #d50000);
   font-weight: 700;
   font-size: 2.6rem;
   cursor: pointer;
@@ -334,7 +338,7 @@
 }
 
 .sm-panel-item:hover {
-  color: var(--sm-accent, #5227ff);
+  color: var(--ink, #14171b);
 }
 
 .sm-panel-list[data-numbering] {
@@ -350,7 +354,7 @@
   font-family: var(--font-mono, monospace);
   font-size: 13px;
   font-weight: 400;
-  color: var(--sm-accent, #c77e33);
+  color: var(--ink-dim, #949ca5);
   letter-spacing: 0;
   pointer-events: none;
   user-select: none;
@@ -363,10 +367,6 @@
     left: 0;
     right: 0;
   }
-
-  .staggered-menu-wrapper[data-open] .sm-logo-img {
-    filter: invert(100%);
-  }
 }
 
 @media (max-width: 640px) {
@@ -374,9 +374,5 @@
     width: 100%;
     left: 0;
     right: 0;
-  }
-
-  .staggered-menu-wrapper[data-open] .sm-logo-img {
-    filter: invert(100%);
   }
 }

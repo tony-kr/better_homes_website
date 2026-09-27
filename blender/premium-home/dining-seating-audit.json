@@ -1,0 +1,29 @@
+{
+  "chairs": [
+    {
+      "chair": "Tailored chair seat.002",
+      "facingTableDot": 1.0
+    },
+    {
+      "chair": "Tailored chair seat.003",
+      "facingTableDot": 1.0
+    },
+    {
+      "chair": "Tailored chair seat.004",
+      "facingTableDot": 1.0
+    },
+    {
+      "chair": "Tailored chair seat.005",
+      "facingTableDot": 1.0
+    },
+    {
+      "chair": "Tailored chair seat.006",
+      "facingTableDot": 1.0
+    },
+    {
+      "chair": "Tailored chair seat.007",
+      "facingTableDot": 1.0
+    }
+  ],
+  "passed": true
+}

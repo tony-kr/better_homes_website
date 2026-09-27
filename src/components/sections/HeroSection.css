@@ -22,28 +22,48 @@
   gap: 4rem;
 }
 
-.hero-eyebrow {
-  margin-bottom: 2rem;
+/*
+  About sits over the tail of the golden-hour render, under the darker
+  'hero' scrim in HouseJourney.css, so everything here is light on dark.
+*/
+.hero-section .hero-eyebrow {
+  margin-bottom: 1.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-section .hero-eyebrow .tick {
+  color: var(--red-on-dark);
 }
 
 .hero-title {
-  font-size: clamp(2rem, 3.5vw, 3.3rem);
+  font-size: clamp(2.6rem, 4.6vw, 4.6rem);
   font-weight: 800;
-  color: var(--plaster);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #fff;
   margin-bottom: 2rem;
-  max-width: 16ch;
+  max-width: 13ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
-.hero-lede {
+
+.hero-title .dot {
+  color: var(--red-bright);
+}
+
+.hero-section .hero-lede {
   font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
   max-width: 52ch;
   margin-bottom: 3.5rem;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* Metrics as a surveyor's strip: hairline-ruled, mono-labelled */
 .hero-metrics {
   display: flex;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .metric {
@@ -52,7 +72,7 @@
   gap: 0.6rem;
   padding: 1.5rem 2.5rem 0 0;
   margin-right: 2.5rem;
-  border-right: 1px solid var(--line);
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .metric:last-child {
@@ -63,16 +83,16 @@
 
 .metric-value {
   font-family: var(--font-display);
-  font-stretch: var(--display-stretch);
-  font-weight: 800;
-  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
-  color: var(--red-bright);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 2.8vw, 2.8rem);
+  letter-spacing: -0.04em;
+  color: #fff;
   line-height: 1;
 }
 
-.metric-label {
-  font-size: 0.62rem;
-  color: var(--stone-dim);
+.hero-section .metric-label {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Right column: disciplines */
@@ -83,9 +103,9 @@
   text-align: right;
 }
 
-.disciplines-title {
-  margin-bottom: 2rem;
-  color: var(--stone-dim);
+.hero-section .disciplines-title {
+  margin-bottom: 1.4rem;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .disciplines-list {
@@ -98,11 +118,12 @@
 
 .discipline-item {
   font-family: var(--font-display);
-  font-stretch: var(--display-stretch);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 2.5vw, 2.3rem);
-  line-height: 1.5;
-  color: var(--stone);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
   cursor: default;
   position: relative;
   width: fit-content;
@@ -112,10 +133,24 @@
               transform 0.45s var(--ease-out-soft);
 }
 
+.discipline-item::before {
+  content: '';
+  position: absolute;
+  right: calc(100% + 0.6em);
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--red-bright);
+  transition: width 0.45s var(--ease-expo);
+}
+
 .discipline-item:hover {
-  color: var(--red-bright);
-  text-shadow: 0 0 36px rgba(213, 0, 0, 0.4);
+  color: #fff;
   transform: translateX(-6px);
+}
+
+.discipline-item:hover::before {
+  width: 0.9em;
 }
 
 /* Responsive */
@@ -141,6 +176,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Taller than the screen on phones: clear the fixed header at the top */
+  .hero-section {
+    padding: 7rem 0 4rem;
+  }
+
   .hero-content {
     padding: 0 1.5rem;
     gap: 2rem;

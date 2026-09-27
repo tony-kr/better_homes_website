@@ -1,11 +1,12 @@
 /*
   Featured projects — an editorial index. Hovering a row swaps the
-  photograph on the right, mounted like a print on the dusk backdrop.
+  photograph on the right, mounted like a print on the paper.
 */
 .portfolio-section {
   display: flex;
   align-items: center;
   background: transparent;
+  padding: 7rem 0 5rem;
 }
 
 .portfolio-content {
@@ -14,7 +15,7 @@
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 5rem;
+  padding: 0 var(--gutter);
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
@@ -27,6 +28,16 @@
   gap: 1.6rem;
 }
 
+.portfolio-title {
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  max-width: 14ch;
+  margin-bottom: 0.6rem;
+}
+
+
 .portfolio-list {
   list-style: none;
   display: flex;
@@ -34,6 +45,7 @@
 }
 
 .portfolio-row {
+  position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: 2.4rem 1fr;
@@ -50,63 +62,81 @@
   cursor: pointer;
 }
 
+.portfolio-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.portfolio-row.active::after {
+  transform: scaleX(1);
+}
+
 .portfolio-list li:first-child .portfolio-row {
   border-top: 1px solid var(--line);
 }
 
 .portfolio-section .portfolio-row-index {
   grid-area: index;
-  font-size: 0.64rem;
-  color: var(--stone-dim);
+  font-size: 0.72rem;
+  color: var(--ink-dim);
   transition: color 0.35s var(--ease-out-soft);
 }
 
 .portfolio-row-name {
   grid-area: name;
   font-family: var(--font-display);
-  font-stretch: var(--display-stretch);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 2vw, 1.6rem);
-  letter-spacing: -0.015em;
-  color: var(--stone);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  letter-spacing: -0.03em;
+  color: var(--ink-soft);
   transition: color 0.35s var(--ease-out-soft), transform 0.35s var(--ease-out-soft);
   transform-origin: left;
 }
 
 .portfolio-section .portfolio-row-meta {
   grid-area: meta;
-  font-size: 0.62rem;
-  color: var(--stone-dim);
+  font-size: 0.68rem;
+  color: var(--ink-dim);
   transition: color 0.35s var(--ease-out-soft);
 }
 
 .portfolio-row.active .portfolio-row-name,
 .portfolio-row:hover .portfolio-row-name {
-  color: var(--plaster);
+  color: var(--ink);
   transform: translateX(6px);
 }
 
 .portfolio-row.active .portfolio-row-index {
-  color: var(--red-bright);
+  color: var(--red);
 }
 
 .portfolio-row.active .portfolio-row-meta {
-  color: var(--stone);
+  color: var(--ink-soft);
 }
 
 .portfolio-note {
-  font-size: 0.64rem;
-  color: var(--stone-dim);
+  font-size: 0.7rem;
+  color: var(--ink-dim);
 }
 
 .portfolio-gallery-link {
-  color: var(--red-bright);
+  color: var(--red);
   text-decoration: none;
-  transition: color 0.3s var(--ease-out-soft);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.45s var(--ease-expo);
 }
 
-.portfolio-gallery-link:hover {
-  color: #ffffff;
+.portfolio-gallery-link:hover,
+.portfolio-gallery-link:focus-visible {
+  background-size: 100% 1px;
 }
 
 /* Right: the photograph */
@@ -118,10 +148,12 @@
 }
 
 .portfolio-figure {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 30px 70px rgba(15, 15, 16, 0.18);
 }
 
 .portfolio-figure img {
@@ -129,16 +161,19 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border: 1px solid var(--line-bright);
-  box-shadow: 0 30px 80px rgba(4, 8, 14, 0.55);
 }
 
 .portfolio-section .portfolio-caption {
   position: absolute;
-  bottom: -1.9rem;
-  right: 0;
-  font-size: 0.62rem;
-  color: var(--stone-dim);
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.66rem;
+  color: #fff;
+  background: rgba(12, 12, 13, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px;
 }
 
 @media (max-width: 1024px) {

@@ -1,0 +1,75 @@
+{
+  "schema": "game-room.room-brief.v1",
+  "roomId": "premium-courtyard-home",
+  "family": "custom",
+  "purpose": "Premium contemporary home interior design showcase with a connected room-by-room walkthrough.",
+  "runtimeSurface": "Existing React / React Three Fiber website. Review stage only.",
+  "boundsMeters": [
+    20,
+    18,
+    3.4
+  ],
+  "hero": {
+    "id": "living-conversation",
+    "role": "Travertine table and tailored linen sofa facing the garden",
+    "reservedBoundsMeters": [
+      5.5,
+      4.5,
+      2.8
+    ]
+  },
+  "symmetry": {
+    "mode": "none",
+    "order": 1,
+    "appliesTo": [],
+    "exceptions": [
+      "Asymmetric functional plan; local bed and dining compositions are balanced."
+    ]
+  },
+  "circulation": {
+    "description": "2 m east-west gallery, 2.4 m entry, door-linked room visits; return to shared passage before moving to another room. Living opens to terrace.",
+    "minimumClearanceMeters": 0.9
+  },
+  "productionCamera": {
+    "viewport": [
+      1440,
+      900
+    ],
+    "location": [
+      5.8,
+      5.1,
+      1.6
+    ],
+    "target": [
+      3.2,
+      2.8,
+      1.1
+    ],
+    "verticalFovDegrees": 55
+  },
+  "performanceBudget": {
+    "maxSceneTriangles": 450000,
+    "maxVLowBytes": 8000000,
+    "maxHighTextureBytes": 64000000
+  },
+  "creditBudget": {
+    "maximumCredits": 0,
+    "approvalRequired": true
+  },
+  "environment": {
+    "type": "none",
+    "identity": "",
+    "source": "",
+    "assignmentKey": ""
+  },
+  "artifacts": {
+    "floorPlan": "plans/lower-room.png",
+    "reflectedCeilingPlan": "plans/reflected-ceiling.png",
+    "planMetadata": "plan-metadata.json",
+    "wallElevations": [
+      "plans/south-elevation.png"
+    ],
+    "visualTarget": "review.html",
+    "openingContactSheet": "masks/contact-sheet.png"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "game-room.milestone-reviews.v1",
+  "roomId": "premium-courtyard-home",
+  "function": {
+    "status": "approved",
+    "approvedBy": "user",
+    "approvedAt": "2026-09-19T18:27:00.335947+00:00",
+    "evidence": [
+      "review.html",
+      "concept.blend",
+      "plans/lower-room.png",
+      "images/furniture-reference.png",
+      "masks/contact-sheet.png"
+    ],
+    "strangestElement": "The cutaway deliberately hides the ceiling; the live home must be enclosed. Large shared gallery could feel institutional unless daylight, oak reveals and arrival views soften it.",
+    "notes": "User approved the presented layout and material direction: \"proceeed with this\". Native Blender construction; no paid Meshy generation authorized or required."
+  },
+  "form": {
+    "status": "approved",
+    "approvedBy": "user",
+    "approvedAt": "2026-09-20T06:33:07.286865+00:00",
+    "evidence": [
+      "interior-review.html",
+      "premium-interior.blend",
+      "geometry-audit.json",
+      "shell-audit.json",
+      "renders/checks/corner-sw.png",
+      "renders/checks/corner-se.png",
+      "renders/checks/corner-ne.png",
+      "renders/checks/corner-nw.png",
+      "renders/checks/ceiling-up.png",
+      "renders/checks/ceiling-oblique-a.png",
+      "renders/checks/ceiling-oblique-b.png"
+    ],
+    "strangestElement": "Sparse planting and some procedural furnishing still read as CGI; the actual website must preserve texture and lighting quality rather than revert to flat materials.",
+    "notes": "User: \"continue... only thing to notice is in dining room chairs are faced opposite to table which is wrong\". All six chairs corrected toward table and orientation numerically verified."
+  },
+  "runtime": {
+    "status": "pending",
+    "approvedBy": "",
+    "approvedAt": "",
+    "evidence": [],
+    "strangestElement": "",
+    "notes": ""
+  }
+}

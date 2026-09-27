@@ -1,0 +1,29 @@
+FAIL: props.json: current official Meshy pricing verification is required
+FAIL: props.json: hardCreditCeiling must be positive and no greater than the room credit budget
+FAIL: prop sofa: reference image requires explicit approval
+FAIL: prop table: reference image requires explicit approval
+FAIL: prop chair: reference image requires explicit approval
+FAIL: prop bed: reference image requires explicit approval
+FAIL: prop island: reference image requires explicit approval
+FAIL: prop pendant: reference image requires explicit approval
+FAIL: opening arrival: mask/dimensions are not approved
+FAIL: opening living-entry: mask/dimensions are not approved
+FAIL: opening dining-entry: mask/dimensions are not approved
+FAIL: opening kitchen-entry: mask/dimensions are not approved
+FAIL: opening utility-entry: mask/dimensions are not approved
+FAIL: opening guest-entry: mask/dimensions are not approved
+FAIL: opening study-entry: mask/dimensions are not approved
+FAIL: opening bath-entry: mask/dimensions are not approved
+FAIL: opening suite-entry: mask/dimensions are not approved
+FAIL: opening dining-kitchen: mask/dimensions are not approved
+FAIL: opening dressing-entry: mask/dimensions are not approved
+FAIL: opening ensuite-entry: mask/dimensions are not approved
+FAIL: opening terrace-passage: mask/dimensions are not approved
+FAIL: opening garden-9.5: mask/dimensions are not approved
+FAIL: opening garden-14.5: mask/dimensions are not approved
+FAIL: opening north-2.5: mask/dimensions are not approved
+FAIL: opening north-7: mask/dimensions are not approved
+FAIL: opening north-14.5: mask/dimensions are not approved
+FAIL: opening north-18.5: mask/dimensions are not approved
+FAIL: Function gate: explicit approval is required
+FAIL: final-report.json: gates.function must be true

@@ -1,0 +1,15 @@
+{
+  "modelBytes": 7876916,
+  "meshCount": 3,
+  "primitiveCount": 40,
+  "materialCount": 40,
+  "textureImages": 48,
+  "uv1Verified": true,
+  "lightmapPixels": [
+    4096,
+    4096
+  ],
+  "modelSha256": "d209b1318524b971d7f716db35241a7d4a7610caf672c320cdd4df1495177029",
+  "sourceSha256": "9c45e8f9bc2080ab756be4d0f058dcaa93b6770ff860aa5be74478ff4ea6e284",
+  "lightmapSha256": "cc522c269400a4e78ba0fbd141ebc89ac338b4f84eaadd69cf9db4d8e4baeaa8"
+}

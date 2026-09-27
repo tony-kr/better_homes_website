@@ -1,0 +1,86 @@
+{
+  "schema": "game-room.room-final-report.v1",
+  "roomId": "premium-courtyard-home",
+  "gates": {
+    "function": true,
+    "form": false,
+    "runtime": false
+  },
+  "formChecks": {
+    "floorPlanParity": false,
+    "primaryArrival": false,
+    "symmetry": false,
+    "shell": false,
+    "manifold": true,
+    "booleans": true,
+    "collisions": false,
+    "support": false,
+    "attachmentOrientation": false,
+    "ceilingAttachmentOrientation": false,
+    "seatingOrientation": false,
+    "focalDistribution": false,
+    "heroClearance": false,
+    "colonnades": false,
+    "screenClearance": false,
+    "scale": false,
+    "camera": true,
+    "ceilingCoverage": true,
+    "environmentCoverage": false,
+    "provenance": true
+  },
+  "reviewRenders": {
+    "corners": [
+      "renders/checks/corner-sw.png",
+      "renders/checks/corner-se.png",
+      "renders/checks/corner-ne.png",
+      "renders/checks/corner-nw.png"
+    ],
+    "ceiling": [
+      "renders/checks/ceiling-up.png",
+      "renders/checks/ceiling-oblique-a.png",
+      "renders/checks/ceiling-oblique-b.png"
+    ],
+    "environment": {}
+  },
+  "runtimeChecks": {
+    "vlow": false,
+    "textureTiers": false,
+    "lightmap": false,
+    "lightingManifest": false,
+    "performance": false,
+    "browserCapture": "",
+    "errors": []
+  },
+  "postmortem": {
+    "observations": [
+      "Existing exporter disables texture coordinates, leaving a flat material scene.",
+      "Existing camera anchors remain outside each room in the gallery.",
+      "New concept includes all major domestic functions and real cut-through openings."
+    ],
+    "corrections": [
+      "Moved kitchen cabinets clear of entry.",
+      "Moved guest shower farther from doorway.",
+      "Moved ensuite vanity to east wall and remounted vanity lighting.",
+      "Removed visible daylight emitters from glass reflections.",
+      "Moved plant out of living camera foreground.",
+      "Added terrace table pedestals and corrected shelf intersections.",
+      "Replaced block garment placeholders with draped shirt silhouettes."
+    ],
+    "remainingRisks": [
+      "Human Form approval pending.",
+      "Exhaustive prop contact/intersection and full-shell light-leak audits are not certified by these focused checks.",
+      "GLB export, draw-call optimization, texture tiers, baked lighting and browser runtime parity remain.",
+      "The bundled validator assumes paid Meshy assets; this native Blender workflow uses none."
+    ]
+  },
+  "proposedLessons": [],
+  "nativeBlenderEvidence": {
+    "source": "premium-interior.blend",
+    "sha256": "f29ba4b6e4f041a471194d0c0e17f7c0607d934e847543b99a4ca37ed0c0fb42",
+    "geometryAudit": "geometry-audit.json",
+    "shellAudit": "shell-audit.json",
+    "navigationRoutes": "navigation-routes.json",
+    "materials": "textures",
+    "review": "interior-review.html"
+  }
+}

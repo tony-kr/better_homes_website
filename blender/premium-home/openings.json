@@ -1,0 +1,390 @@
+{
+  "schema": "game-room.opening-schedule.v1",
+  "roomId": "premium-courtyard-home",
+  "primaryArrival": {
+    "openingId": "arrival",
+    "exception": ""
+  },
+  "openings": [
+    {
+      "id": "arrival",
+      "kind": "door",
+      "wall": "West facade",
+      "widthMeters": 2.4,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Entry gallery",
+      "location": [
+        0,
+        7
+      ],
+      "axis": "y",
+      "approved": true,
+      "mask": "masks/arrival.png",
+      "cutter": "masks/arrival.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "living-entry",
+      "kind": "door",
+      "wall": "South gallery partition",
+      "widthMeters": 2.8,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Living",
+      "location": [
+        3.7,
+        6
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/living-entry.png",
+      "cutter": "masks/living-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "dining-entry",
+      "kind": "door",
+      "wall": "South gallery partition",
+      "widthMeters": 2.5,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Dining",
+      "location": [
+        9.5,
+        6
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/dining-entry.png",
+      "cutter": "masks/dining-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "kitchen-entry",
+      "kind": "door",
+      "wall": "South gallery partition",
+      "widthMeters": 2.2,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Kitchen",
+      "location": [
+        14.4,
+        6
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/kitchen-entry.png",
+      "cutter": "masks/kitchen-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "utility-entry",
+      "kind": "door",
+      "wall": "South gallery partition",
+      "widthMeters": 0.95,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Utility",
+      "location": [
+        18.5,
+        6
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/utility-entry.png",
+      "cutter": "masks/utility-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "guest-entry",
+      "kind": "door",
+      "wall": "North gallery partition",
+      "widthMeters": 1.1,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Guest bedroom",
+      "location": [
+        3.5,
+        8
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/guest-entry.png",
+      "cutter": "masks/guest-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "study-entry",
+      "kind": "door",
+      "wall": "North gallery partition",
+      "widthMeters": 1.2,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Study",
+      "location": [
+        7,
+        8
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/study-entry.png",
+      "cutter": "masks/study-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "bath-entry",
+      "kind": "door",
+      "wall": "North gallery partition",
+      "widthMeters": 1,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Guest bathroom",
+      "location": [
+        10.5,
+        8
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/bath-entry.png",
+      "cutter": "masks/bath-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "suite-entry",
+      "kind": "door",
+      "wall": "North gallery partition",
+      "widthMeters": 1.4,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Primary suite",
+      "location": [
+        14.2,
+        8
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/suite-entry.png",
+      "cutter": "masks/suite-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "dining-kitchen",
+      "kind": "door",
+      "wall": "Kitchen screen",
+      "widthMeters": 2.6,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Kitchen",
+      "location": [
+        12,
+        4.3
+      ],
+      "axis": "y",
+      "approved": true,
+      "mask": "masks/dining-kitchen.png",
+      "cutter": "masks/dining-kitchen.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "dressing-entry",
+      "kind": "door",
+      "wall": "Suite service wall",
+      "widthMeters": 1.2,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Dressing",
+      "location": [
+        17,
+        9.5
+      ],
+      "axis": "y",
+      "approved": true,
+      "mask": "masks/dressing-entry.png",
+      "cutter": "masks/dressing-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "ensuite-entry",
+      "kind": "door",
+      "wall": "Suite service wall",
+      "widthMeters": 1,
+      "heightMeters": 2.7,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Ensuite",
+      "location": [
+        17,
+        12.4
+      ],
+      "axis": "y",
+      "approved": true,
+      "mask": "masks/ensuite-entry.png",
+      "cutter": "masks/ensuite-entry.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "terrace-passage",
+      "kind": "door",
+      "wall": "South facade",
+      "widthMeters": 3.6,
+      "heightMeters": 2.8,
+      "sillMeters": 0,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Garden terrace",
+      "location": [
+        3.5,
+        0
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/terrace-passage.png",
+      "cutter": "masks/terrace-passage.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "garden-9.5",
+      "kind": "window",
+      "wall": "South facade",
+      "widthMeters": 3.6,
+      "heightMeters": 2.7,
+      "sillMeters": 0.1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Garden terrace",
+      "location": [
+        9.5,
+        0
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/garden-9.5.png",
+      "cutter": "masks/garden-9.5.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "garden-14.5",
+      "kind": "window",
+      "wall": "South facade",
+      "widthMeters": 3.7,
+      "heightMeters": 2.7,
+      "sillMeters": 0.1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Garden terrace",
+      "location": [
+        14.5,
+        0
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/garden-14.5.png",
+      "cutter": "masks/garden-14.5.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "north-2.5",
+      "kind": "window",
+      "wall": "North facade",
+      "widthMeters": 3.2,
+      "heightMeters": 1.8,
+      "sillMeters": 1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Planted garden",
+      "location": [
+        2.5,
+        14
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/north-2.5.png",
+      "cutter": "masks/north-2.5.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "north-7",
+      "kind": "window",
+      "wall": "North facade",
+      "widthMeters": 2.8,
+      "heightMeters": 1.8,
+      "sillMeters": 1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Planted garden",
+      "location": [
+        7,
+        14
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/north-7.png",
+      "cutter": "masks/north-7.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "north-14.5",
+      "kind": "window",
+      "wall": "North facade",
+      "widthMeters": 3.3,
+      "heightMeters": 1.8,
+      "sillMeters": 1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Planted garden",
+      "location": [
+        14.5,
+        14
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/north-14.5.png",
+      "cutter": "masks/north-14.5.json",
+      "approvedBy": "user"
+    },
+    {
+      "id": "north-18.5",
+      "kind": "window",
+      "wall": "North facade",
+      "widthMeters": 1.4,
+      "heightMeters": 1.8,
+      "sillMeters": 1,
+      "thresholdMeters": 0,
+      "depthMeters": 0.2,
+      "destination": "Planted garden",
+      "location": [
+        18.5,
+        14
+      ],
+      "axis": "x",
+      "approved": true,
+      "mask": "masks/north-18.5.png",
+      "cutter": "masks/north-18.5.json",
+      "approvedBy": "user"
+    }
+  ]
+}

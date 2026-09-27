@@ -3,29 +3,11 @@
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  padding-top: 7rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   background: transparent;
-}
-
-/* Dark scrim rising from the base so the type reads over the lit house */
-.footer-section::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 78%;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(11, 17, 24, 0.55) 34%,
-    rgba(11, 17, 24, 0.9) 62%,
-    rgba(11, 17, 24, 0.97) 100%
-  );
 }
 
 .footer-content {
@@ -47,18 +29,15 @@
 }
 
 .footer-headline {
-  font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+  font-size: clamp(2.2rem, 4.8vw, 4.6rem);
   font-weight: 800;
-  color: var(--plaster);
-  margin-bottom: 1.6rem;
-  max-width: 30ch;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  color: var(--ink);
+  margin-bottom: 1.8rem;
+  max-width: 22ch;
 }
 
-/* "Let's draw yours." sits on its own last line, low on the scrim,
-   clear of the lamplit windows above */
-.footer-headline em {
-  text-shadow: 0 0 42px rgba(213, 0, 0, 0.4), 0 2px 18px rgba(11, 17, 24, 0.9);
-}
 
 .footer-email {
   font-family: var(--font-mono);
@@ -92,7 +71,7 @@
 .footer-column h4 {
   font-family: var(--font-mono);
   font-weight: 400;
-  color: var(--stone-dim);
+  color: var(--ink-dim);
   margin-bottom: 1.25rem;
 }
 
@@ -106,13 +85,13 @@
   margin-bottom: 0.6rem;
   font-family: var(--font-body);
   font-size: 0.92rem;
-  color: var(--stone);
+  color: var(--ink-soft);
 }
 
 .footer-column a {
   font-family: var(--font-body);
   font-size: 0.92rem;
-  color: var(--stone);
+  color: var(--ink-soft);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -132,7 +111,7 @@
   padding-left: 10rem;
   border-top: 1px solid var(--line);
   font-size: 0.6rem;
-  color: var(--stone-dim);
+  color: var(--ink-dim);
 }
 
 /* Responsive */
@@ -149,6 +128,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Taller than a phone screen: keep the heading clear of the fixed header */
+  .footer-section {
+    padding-top: 6.5rem;
+  }
+
   .footer-content {
     padding: 0 1.5rem 4.5rem;
   }
@@ -182,5 +166,66 @@
     align-items: flex-start;
     gap: 0.5rem;
     padding-left: 0;
+  }
+}
+
+/* Reach row — the mail address and the WhatsApp invitation, side by side */
+.footer-reach {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.footer-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: border-color 0.35s var(--ease-out-soft),
+              color 0.35s var(--ease-out-soft),
+              background 0.35s var(--ease-out-soft);
+}
+
+.footer-wa svg {
+  color: #25d366;
+  flex-shrink: 0;
+}
+
+.footer-wa:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: var(--red-wash);
+}
+
+/* Phone and WhatsApp inside the Visit column */
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-contact svg {
+  flex-shrink: 0;
+  color: var(--red);
+}
+
+.footer-contact.is-whatsapp svg {
+  color: #25d366;
+}
+
+@media (max-width: 768px) {
+  .footer-reach {
+    gap: 0.9rem;
   }
 }
