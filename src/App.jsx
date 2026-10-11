@@ -6,6 +6,7 @@ import { useLoading } from './context/LoadingContext';
 import HouseJourney, { JOURNEY_IDS, heroImageFor } from './components/HouseJourney';
 import LaserPointer from './components/LaserPointer';
 import GalleryPage from './components/GalleryPage';
+import WhatsAppChat from './components/WhatsAppChat';
 import Loading from './components/sections/Loading';
 import LandingSection from './components/sections/LandingSection';
 import HeroSection from './components/sections/HeroSection';
@@ -272,6 +273,8 @@ function App() {
       {isLoading && <Loading percent={percent} ready={heroReady} />}
 
       <LaserPointer />
+
+      <WhatsAppChat hidden={isLoading} />
 
       <StaggeredMenu
         isFixed={true}

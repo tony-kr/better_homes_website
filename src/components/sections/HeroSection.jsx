@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { MaskReveal } from '../motion';
+import { CountUp, MaskReveal, ScrollHighlight } from '../motion';
 import './HeroSection.css';
 import { sheetNumber } from '../../data/journey';
 
@@ -62,14 +62,14 @@ const HeroSection = () => {
             Built for the hour you <span className="accent">come home</span><span className="dot">.</span>
           </MaskReveal>
 
-          <p className="hero-lede">
+          <ScrollHighlight className="hero-lede" dim={0.28}>
             Better Homes is more than an interior design studio. We are a
             turnkey interiors and construction company: since 2014 we have
             taken homes across Bengaluru, from cozy 1BHKs in Koramangala to
             luxury villas in Whitefield, from bare shell to move-in ready.
             One contract, one team and one timeline, from the first wall to
             the last cushion.
-          </p>
+          </ScrollHighlight>
 
           <div className="hero-metrics">
             {metrics.map((m, i) => (
@@ -80,7 +80,7 @@ const HeroSection = () => {
                 animate={hasEntered ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="metric-value">{m.value}</span>
+                <CountUp className="metric-value" value={m.value} delay={0.6 + i * 0.15} />
                 <span className="metric-label annotation">{m.label}</span>
               </motion.div>
             ))}

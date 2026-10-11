@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import PixelLogo from '../PixelLogo';
 import './StaggeredMenu.css';
 
 export const StaggeredMenu = ({
@@ -388,13 +389,13 @@ export const StaggeredMenu = ({
           aria-label="Better Homes — go to home"
           onClick={closeMenu}
         >
-          <img
+          <PixelLogo
             src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
             alt="Better Homes logo"
-            className="sm-logo-img"
-            draggable={false}
+            imgClassName="sm-logo-img"
             width={110}
             height={24}
+            delay={2600}
           />
         </a>
         <button

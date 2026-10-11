@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ESTIMATE_LINK } from '../../data/contact';
-import { EASE, MaskReveal, RotatingWord } from '../motion';
+import { CountUp, EASE, MaskReveal, RotatingWord } from '../motion';
 import './LandingSection.css';
 
 /*
@@ -74,7 +74,7 @@ const LandingSection = ({ onNavigate, revealed = true }) => (
         <div className="landing-fact" key={f.label}>
           {/* dt must precede dd; the label is lifted above it in CSS */}
           <dt>
-            {f.value}
+            <CountUp value={f.value} play={revealed} delay={1.5} />
             {f.unit && <span className="landing-fact-unit">{f.unit}</span>}
           </dt>
           <dd>{f.label}</dd>

@@ -42,8 +42,10 @@
 
 
 .services-lede {
-  max-width: 40ch;
-  font-size: 1.02rem;
+  max-width: 34ch;
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 .services-list {

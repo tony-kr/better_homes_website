@@ -10,7 +10,7 @@ import {
   STUDIO_ADDRESS,
   STUDIO_HOURS
 } from '../../data/contact';
-import { MaskReveal } from '../motion';
+import { MaskReveal, ScrollHighlight } from '../motion';
 import './EstimateSection.css';
 import { sheetNumber } from '../../data/journey';
 
@@ -69,10 +69,10 @@ const EstimateSection = () => {
           <MaskReveal className="estimate-title">
             Tell us about the home. <span className="accent">The estimate is on us</span><span className="dot">.</span>
           </MaskReveal>
-          <p className="estimate-lede">
+          <ScrollHighlight className="estimate-lede" offset={['start 0.92', 'end 0.6']}>
             No forms, no waiting on an email. Tap below and WhatsApp opens with
             the enquiry already written — you only fill in the blanks.
-          </p>
+          </ScrollHighlight>
         </motion.div>
 
         <motion.div className="estimate-action" {...rise(0.12)}>

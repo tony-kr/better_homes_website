@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MaskReveal, rise } from '../motion';
+import { MaskReveal, ScrollHighlight, rise } from '../motion';
 import './ServicesSection.css';
 import { sheetNumber } from '../../data/journey';
 
@@ -61,11 +61,11 @@ const ServicesSection = ({ onNavigate }) => (
         <MaskReveal className="services-title">
           Everything a home needs, <span className="accent">under one roof</span><span className="dot">.</span>
         </MaskReveal>
-        <motion.p className="services-lede" {...rise(0.2)}>
+        <ScrollHighlight className="services-lede">
           Every trade a home needs, from structure and services to the
           last coat of paint, managed by one team so nothing falls between
           contractors.
-        </motion.p>
+        </ScrollHighlight>
         <motion.div {...rise(0.3)}>
           <button className="btn-primary" onClick={() => onNavigate?.('estimate')}>
             Get a free estimate <span className="arrow" aria-hidden="true">→</span>

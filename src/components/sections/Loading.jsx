@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLoading } from '../../context/LoadingContext';
+import PixelLogo from '../PixelLogo';
 import './Loading.css';
 
 /*
@@ -65,7 +66,7 @@ const Loading = ({ percent, ready = true }) => {
   return (
     <div className={`splash ${leaving ? 'splash-leaving' : ''}`} role="status" aria-live="polite">
       <div className="splash-inner">
-        <img className="splash-logo" src="/bh-logo.png" alt="Better Homes" />
+        <PixelLogo imgClassName="splash-logo" src="/bh-logo.png" alt="Better Homes" loop={false} cells={26} delay={150} />
       </div>
 
       <div className="splash-foot">

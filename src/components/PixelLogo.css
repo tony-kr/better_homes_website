@@ -1,0 +1,20 @@
+/* <PixelLogo>: the image holds the space, the canvas draws over it */
+.pixel-logo {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.pixel-logo-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* Once the canvas is drawing, the image only keeps the layout */
+.pixel-logo.is-pixel > img {
+  visibility: hidden;
+}

@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, animate, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 
 /*
   The site's motion vocabulary, kept in one place so every section moves the
@@ -10,6 +10,9 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-mot
   - <ImageReveal>: a picture wipes up out of a clip and settles from a
     slight zoom.
   - <RotatingWord>: the landing's changing phrase.
+  - <ScrollHighlight>: a paragraph that fills in word by word, from a faint
+    grey to full ink, as it is scrolled through (after mellowdesigns.co).
+  - <CountUp>: a figure that counts up to its value when first seen.
 
   All of it respects prefers-reduced-motion: things simply appear.
 */
@@ -177,6 +180,72 @@ export function RotatingWord({ words, interval = 2600, className = '', paused = 
           )}
         </motion.span>
       </AnimatePresence>
+    </span>
+  );
+}
+
+/*
+  Each word sits at `dim` opacity and comes up to full as scrolling carries
+  the paragraph from the lower part of the screen (`offset`) towards the
+  middle. Works on light and dark grounds alike, since it is opacity, not a
+  colour. Plain text children only.
+*/
+function HighlightWord({ progress, range, dim, children }) {
+  const opacity = useTransform(progress, range, [dim, 1]);
+  return <motion.span className="sh-word" style={{ opacity }}>{children}</motion.span>;
+}
+
+export function ScrollHighlight({
+  as: Tag = 'p',
+  children,
+  className = '',
+  dim = 0.2,
+  offset = ['start 0.88', 'end 0.52'],
+  ...rest
+}) {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset });
+  const text = flat(children).join('');
+  if (reduce) return <Tag ref={ref} className={className} {...rest}>{text}</Tag>;
+  const words = text.split(/\s+/).filter(Boolean);
+  const n = words.length;
+  return (
+    <Tag ref={ref} className={`scroll-highlight ${className}`} {...rest}>
+      {words.map((w, i) => (
+        <HighlightWord key={i} progress={scrollYProgress} range={[i / n, Math.min(1, (i + 1.6) / n)]} dim={dim}>
+          {w}{i < n - 1 ? ' ' : ''}
+        </HighlightWord>
+      ))}
+    </Tag>
+  );
+}
+
+/* "500+" counts 0 → 500 and keeps its "+"; anything after the number is kept.
+   `play` overrides the in-view trigger (the landing waits for the splash). */
+export function CountUp({ value, duration = 1.8, delay = 0, className = '', play }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const seen = play === undefined ? inView : play;
+  const reduce = useReducedMotion();
+  const m = String(value).match(/^(\D*)([\d,.]+)(.*)$/);
+  const target = m ? parseFloat(m[2].replace(/,/g, '')) : 0;
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!m || !seen || reduce) return undefined;
+    const controls = animate(0, target, {
+      duration,
+      delay,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setN(Math.round(v))
+    });
+    return () => controls.stop();
+  }, [seen, reduce, target, duration, delay]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!m) return <span className={className}>{value}</span>;
+  const shown = reduce ? target : n;
+  return (
+    <span ref={ref} className={className} aria-label={String(value)}>
+      <span aria-hidden="true">{m[1]}{shown.toLocaleString('en-IN')}{m[3]}</span>
     </span>
   );
 }
