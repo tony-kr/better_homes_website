@@ -17,7 +17,10 @@ const ConceptsOverlay = ({ room, open, onClose }) => {
     getLenis()?.stop();
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    // The site header and chat button step aside: the overlay has its own close
+    document.documentElement.dataset.overlay = 'on';
     return () => {
+      delete document.documentElement.dataset.overlay;
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
       getLenis()?.start();

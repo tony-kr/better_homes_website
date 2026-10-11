@@ -161,10 +161,12 @@ p {
   color: var(--red-bright);
 }
 
-/* Page section wrappers — min-height so content can breathe on phones */
+/* Page section wrappers — min-height so content can breathe on phones.
+   svh, not dvh: dvh changes as a phone's address bar slides in and out,
+   which resized every section at once and made the page jump. */
 .page-section {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   width: 100%;
 }
 
@@ -198,7 +200,7 @@ section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
 }
 

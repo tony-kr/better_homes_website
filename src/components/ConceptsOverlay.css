@@ -19,6 +19,8 @@
 }
 
 .concepts-header {
+  /* room on the right for the pinned close button */
+  padding-right: 4.5rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -47,6 +49,11 @@
 }
 
 .concepts-close {
+  /* Pinned to the corner so it is always in reach while the boards scroll */
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
   flex-shrink: 0;
   width: 52px;
   height: 52px;
@@ -56,8 +63,9 @@
   font-size: 1.7rem;
   line-height: 1;
   color: var(--ink);
-  background: transparent;
+  background: var(--paper);
   border: 1px solid var(--line-bright);
+  box-shadow: 0 6px 18px rgba(12, 12, 13, 0.1);
   border-radius: 50%;
   cursor: pointer;
   transition: color 0.3s var(--ease-out-soft),
@@ -113,7 +121,13 @@
     padding: 2rem 1.25rem 4rem;
   }
 
+  .concepts-header {
+    padding-right: 3.5rem;
+  }
+
   .concepts-close {
+    top: 1.25rem;
+    right: 1.25rem;
     width: 44px;
     height: 44px;
   }
@@ -147,4 +161,17 @@
     margin-top: 2rem;
     gap: 1rem;
   }
+}
+
+/* While the overlay is open the site header and the chat button step aside,
+   so the menu toggle never sits on top of the close button */
+.staggered-menu-wrapper,
+.wa-chat {
+  transition: opacity 0.3s var(--ease-out-soft), visibility 0.3s;
+}
+
+html[data-overlay='on'] .staggered-menu-wrapper,
+html[data-overlay='on'] .wa-chat {
+  opacity: 0;
+  visibility: hidden;
 }
