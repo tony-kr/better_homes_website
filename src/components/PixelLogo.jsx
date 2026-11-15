@@ -13,9 +13,9 @@ import './PixelLogo.css';
   the canvas simply redraws to whatever size the image is given. With
   reduced motion, or before the canvas is ready, the plain image shows.
 */
-const IN_MS = 1100;
-const OUT_MS = 900;
-const GAP_MS = 380;
+const IN_MS = 650;
+const OUT_MS = 520;
+const GAP_MS = 220;
 const BAND = 0.22; // share of the timeline a cell spends as a bare square
 
 export default function PixelLogo({
