@@ -395,7 +395,7 @@ export const StaggeredMenu = ({
             imgClassName="sm-logo-img"
             width={110}
             height={24}
-            delay={2600}
+            delay={1400}
           />
         </a>
         <button

@@ -24,7 +24,7 @@ export default function PixelLogo({
   className = '',
   imgClassName = '',
   loop = true,
-  hold = 5200,
+  hold = 2000,
   cells = 16, // rows of cells across the logo's height
   delay = 0,
   ...imgProps
